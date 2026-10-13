@@ -8,7 +8,7 @@ import com.registro.dao.UsuarioDAO;
 
 /**
  *
- *5:29
+ *
  * 
  *
  *
