@@ -8,6 +8,10 @@ import com.registro.dao.UsuarioDAO;
 
 /**
  *
+ *
+ *
+ *
+ *
  * @author Administrator
  */
 public class UsuarioFACADE {
