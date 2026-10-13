@@ -1,0 +1,49 @@
+*{box-sizing:border-box}
+:root{--navy:#0D214F;--blue:#2864F0;--blue-hover:#174CC5;--page:#EEF2F8;--text:#10234D;--border:#DFE6F0}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--page)}
+.dashboard-container{min-height:100vh;display:flex}
+.sidebar{width:230px;flex:0 0 230px;min-height:100vh;padding:20px 18px;display:flex;flex-direction:column;background:var(--navy);color:#fff}
+.saludo-admin h2{margin:2px 0 28px;font-size:15px;font-weight:700}
+.sidebar-menu,.sidebar-menu2{list-style:none;margin:0;padding:0}
+.sidebar-menu li,.sidebar-menu2 li{margin:0 0 7px;border-radius:7px}
+.sidebar-menu a,.sidebar-menu2 a{display:flex;align-items:center;gap:10px;min-height:38px;padding:10px 14px;color:#f7f9ff;text-decoration:none;font-size:13px;border-radius:7px;transition:background .18s,color .18s}
+.sidebar-menu a i,.sidebar-menu2 a i{width:17px;text-align:center;font-size:14px}
+.sidebar-menu li.active a,.sidebar-menu a:hover,.sidebar-menu2 a:hover{background:#83CFEA;color:#0D214F}
+.sidebar-menu2{margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.12)}
+.sidebar-menu2 li{margin-bottom:5px}
+.dashboard-main{flex:1;min-width:0;padding:26px}
+.panel{width:100%;min-height:430px;padding:23px 27px;background:#fff;border-radius:13px;box-shadow:0 4px 12px rgba(18,35,72,.08)}
+.bloques{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:22px}
+.bloques button{min-height:41px;padding:10px 15px;border:0;border-radius:8px;color:#fff;background:linear-gradient(180deg,#4B91ED,var(--blue));box-shadow:0 3px 7px rgba(40,100,240,.24);font-size:13px;font-weight:700;cursor:pointer}
+.bloques button:hover{background:var(--blue-hover)}
+.bloques button i{margin-right:6px}
+.fila-principal{display:grid;grid-template-columns:minmax(0,1fr) 220px;align-items:start;gap:18px}
+.tabla-thead{min-width:0}
+.tabla-thead h3{margin:0 0 14px;font-size:14px;font-weight:700}
+.tabla-scroll{width:100%;overflow-x:auto}
+.tabla{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;white-space:nowrap}
+.tabla thead{background:#10069A;color:#fff}
+.tabla th{padding:12px 13px;text-align:left;font-size:12px}
+.tabla th:first-child{border-radius:9px 0 0 0}
+.tabla th:last-child{border-radius:0 9px 0 0}
+.tabla td{padding:11px 13px;border-bottom:1px solid #EEF1F6}
+.celda-estado{white-space:nowrap}
+.punto{display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;vertical-align:middle}
+.punto.verde{background:#078A22}.punto.rojo{background:#E23B3B}
+.select-estado{max-width:95px;border:0;outline:0;background:transparent;color:#17233C;font-size:12px;cursor:pointer}
+.celda-imagen{white-space:nowrap}
+.btn-accion{width:31px;height:31px;margin-right:3px;border:0;border-radius:5px;color:#fff;cursor:pointer}
+.btn-oscuro{background:#0D214F}.btn-verde{background:#1CC56A}.btn-celeste{background:#A6C8F4}
+.tarjetas-laterales{display:flex;flex-direction:column;gap:13px}
+.tarjeta-info{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:66px;padding:13px 14px;border:1px solid var(--border);border-radius:10px;background:#fff;box-shadow:0 2px 5px rgba(18,35,72,.04)}
+.titulo-tarjeta{margin:0 0 5px;color:#69778D;font-size:10px;letter-spacing:.45px}
+.valor-tarjeta{margin:0;color:#10234D;font-size:18px;font-weight:700}
+.icono-tarjeta{color:var(--blue);font-size:22px}
+.tarjetas-inferiores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:19px}
+.tarjeta-inferior{display:flex;align-items:center;gap:16px;min-height:81px;padding:15px 18px;border:1px solid var(--border);border-radius:10px;background:#fff;box-shadow:0 2px 5px rgba(18,35,72,.035)}
+.tarjeta-inferior>i{flex:0 0 auto;color:var(--blue);font-size:24px}
+.tarjeta-inferior p{margin:2px 0;font-size:12px}
+.tarjeta-inferior .titulo-inferior{margin-bottom:5px;font-size:12px;color:#34435E}
+@media(max-width:1200px){.fila-principal{grid-template-columns:minmax(0,1fr)}.tarjetas-laterales{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.tarjetas-inferiores{grid-template-columns:1fr}}
+@media(max-width:760px){.dashboard-container{display:block}.sidebar{width:100%;min-height:auto;padding:15px}.saludo-admin h2{margin-bottom:14px}.sidebar-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.sidebar-menu li{margin:0}.sidebar-menu a{padding:9px}.sidebar-menu2{display:flex;gap:8px;margin-top:12px;padding-top:10px}.dashboard-main{padding:12px}.panel{padding:15px}.bloques{grid-template-columns:1fr;gap:10px}.tarjetas-laterales{grid-template-columns:1fr}}
+
