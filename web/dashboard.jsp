@@ -53,7 +53,7 @@
                             <tbody>
                                 <%-- Fila de ejemplo; después se conectará con la base de datos. --%>
                                 <tr>
-                                    <td>John Doe</td><td>123456789</td><td>09:00 AM</td>
+                                    <td>Michael Cueva</td><td>00000001</td><td>09:00 AM</td>
                                     <td class="celda-estado"><span class="punto verde" id="puntoEstado"></span>
                                         <select class="select-estado" id="estadoEntrada"><option value="verde">Presente</option><option value="rojo">Ausente</option></select>
                                     </td>

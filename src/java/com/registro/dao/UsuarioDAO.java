@@ -4,19 +4,12 @@
  */
 package com.registro.dao;
 
-/**
- *
- * @author Administrator
- */
-
 import com.registro.config.ConexionBD;
 import com.registro.dto.UsuarioDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 public class UsuarioDAO {
     
