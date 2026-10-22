@@ -1,0 +1,697 @@
+
+
+/* =========================================================
+   GASTOS - XPORT FITNESS GYM
+   Compatible con gastos.jsp y diseingreso.css
+   ========================================================= */
+
+:root {
+    --gastos-azul: #2864f5;
+    --gastos-azul-oscuro: #092454;
+    --gastos-texto: #172b4d;
+    --gastos-texto-secundario: #75829a;
+    --gastos-fondo: #f4f7fc;
+    --gastos-blanco: #ffffff;
+    --gastos-borde: #e7ebf3;
+    --gastos-verde: #18bd70;
+    --gastos-rojo: #ed5264;
+    --gastos-radio: 18px;
+    --gastos-sombra: 0 5px 24px rgba(25, 48, 91, 0.06);
+}
+
+/* CONTENIDO PRINCIPAL */
+
+.gastos-main {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+    padding: 30px;
+    background: var(--gastos-fondo);
+    color: var(--gastos-texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.gastos-main *,
+.gastos-main *::before,
+.gastos-main *::after {
+    box-sizing: border-box;
+}
+
+.gastos-main h1,
+.gastos-main h2,
+.gastos-main p {
+    margin-top: 0;
+}
+
+/* CABECERA */
+
+.gastos-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 26px;
+}
+
+.gastos-eyebrow {
+    margin-bottom: 8px;
+    color: var(--gastos-azul);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+}
+
+.gastos-header h1 {
+    margin-bottom: 8px;
+    color: var(--gastos-azul-oscuro);
+    font-size: clamp(24px, 2.5vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.gastos-subtitle {
+    margin-bottom: 0;
+    color: var(--gastos-texto-secundario);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.periodo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    padding: 12px 16px;
+    background: var(--gastos-blanco);
+    border: 1px solid var(--gastos-borde);
+    border-radius: 12px;
+    color: var(--gastos-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.periodo i {
+    color: var(--gastos-azul);
+    font-size: 17px;
+}
+
+/* TARJETAS DE RESUMEN */
+
+.resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.resumen-card {
+    position: relative;
+    min-width: 0;
+    padding: 23px;
+    overflow: hidden;
+    background: var(--gastos-blanco);
+    border: 1px solid var(--gastos-borde);
+    border-radius: var(--gastos-radio);
+    box-shadow: var(--gastos-sombra);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resumen-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(25, 48, 91, 0.10);
+}
+
+.resumen-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    font-size: 20px;
+}
+
+.gastos-card-total .resumen-icon {
+    background: #fff0f1;
+    color: #ed5264;
+}
+
+.ingresos-card .resumen-icon {
+    background: #e9fbf2;
+    color: #18bd70;
+}
+
+.saldo-card .resumen-icon {
+    background: #eaf1ff;
+    color: var(--gastos-azul);
+}
+
+.resumen-label {
+    margin-bottom: 8px;
+    color: var(--gastos-texto-secundario);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.resumen-value {
+    margin-bottom: 15px;
+    color: var(--gastos-azul-oscuro);
+    font-size: clamp(23px, 2.1vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    overflow-wrap: anywhere;
+}
+
+.resumen-foot {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--gastos-texto-secundario);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.gastos-card-total .resumen-foot i {
+    color: #ed5264;
+}
+
+.ingresos-card .resumen-foot i {
+    color: #18bd70;
+}
+
+.saldo-card .resumen-foot i {
+    color: var(--gastos-azul);
+}
+
+/* TARJETAS DE ANÁLISIS */
+
+.analisis-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.contenido-card {
+    min-width: 0;
+    padding: 24px;
+    background: var(--gastos-blanco);
+    border: 1px solid var(--gastos-borde);
+    border-radius: var(--gastos-radio);
+    box-shadow: var(--gastos-sombra);
+}
+
+.card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card-heading h2 {
+    margin-bottom: 7px;
+    color: var(--gastos-azul-oscuro);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.card-heading p {
+    margin-bottom: 0;
+    color: var(--gastos-texto-secundario);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.total-categorias {
+    flex-shrink: 0;
+    color: var(--gastos-azul);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.heading-icon {
+    color: var(--gastos-azul);
+    font-size: 20px;
+}
+
+/* GRÁFICO DONUT */
+
+.categorias-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 24px;
+}
+
+.donut-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 190px;
+    max-width: 100%;
+}
+
+.donut-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    max-width: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+        #2864f5 0% 35%,
+        #18bd70 35% 63%,
+        #f3b73f 63% 81%,
+        #9b72e8 81% 93%,
+        #a9b5c9 93% 100%
+    );
+}
+
+.donut-hole {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 65%;
+    height: 65%;
+    border-radius: 50%;
+    background: var(--gastos-blanco);
+    box-shadow: 0 0 0 1px rgba(20, 40, 80, 0.04);
+    text-align: center;
+}
+
+.donut-hole strong {
+    color: var(--gastos-azul-oscuro);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.donut-hole span {
+    margin-top: 5px;
+    color: var(--gastos-texto-secundario);
+    font-size: 10px;
+}
+
+/* LEYENDA DE CATEGORÍAS */
+
+.leyenda-categorias {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 17px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.leyenda-categorias li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+}
+
+.leyenda-nombre {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #53627c;
+}
+
+.leyenda-categorias li strong {
+    color: var(--gastos-texto);
+    font-size: 11px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.leyenda-categorias small {
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--gastos-texto-secundario);
+    font-size: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.dot-personal {
+    background: #2864f5;
+}
+
+.dot-alquiler {
+    background: #18bd70;
+}
+
+.dot-servicios {
+    background: #f3b73f;
+}
+
+.dot-equipos {
+    background: #9b72e8;
+}
+
+.dot-otros {
+    background: #a9b5c9;
+}
+
+/* BARRAS COMPARATIVAS */
+
+.barras-categorias {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.barra-item {
+    min-width: 0;
+}
+
+.barra-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.barra-meta span {
+    color: #53627c;
+}
+
+.barra-meta strong {
+    color: var(--gastos-texto);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.barra-fondo {
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+    background: #edf1f8;
+    border-radius: 20px;
+}
+
+.barra {
+    display: block;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.barra-personal {
+    width: 100%;
+    background: #2864f5;
+}
+
+.barra-alquiler {
+    width: 80%;
+    background: #18bd70;
+}
+
+.barra-servicios {
+    width: 51.4%;
+    background: #f3b73f;
+}
+
+.barra-equipos {
+    width: 34.3%;
+    background: #9b72e8;
+}
+
+.barra-otros {
+    width: 20%;
+    background: #a9b5c9;
+}
+
+/* HISTORIAL DE MOVIMIENTOS */
+
+.movimientos-card {
+    margin-bottom: 24px;
+}
+
+.movimientos-heading {
+    align-items: center;
+}
+
+.movimientos-count {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-radius: 9px;
+    background: #edf3ff;
+    color: var(--gastos-azul);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.tabla-scroll {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.tabla-movimientos {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 12px;
+}
+
+.tabla-movimientos thead {
+    background: #f7f9fd;
+}
+
+.tabla-movimientos th {
+    padding: 14px 12px;
+    color: #74819a;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tabla-movimientos td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #edf0f6;
+    color: #53627c;
+    vertical-align: middle;
+}
+
+.tabla-movimientos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-movimientos tbody tr {
+    transition: background 0.15s ease;
+}
+
+.tabla-movimientos tbody tr:hover {
+    background: #fafbff;
+}
+
+.tabla-movimientos td:first-child {
+    min-width: 220px;
+}
+
+.mov-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
+    border-radius: 12px;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.mov-gasto {
+    background: #fff0f1;
+    color: #ed5264;
+}
+
+.mov-ingreso {
+    background: #e9fbf2;
+    color: #18bd70;
+}
+
+.mov-info {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    vertical-align: middle;
+}
+
+.mov-info strong {
+    color: var(--gastos-texto);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.mov-info small {
+    color: var(--gastos-texto-secundario);
+    font-size: 10px;
+}
+
+.estado {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.estado-pagado {
+    background: #fff5e5;
+    color: #c18117;
+}
+
+.estado-completado {
+    background: #e7f9ef;
+    color: #15975a;
+}
+
+.monto-col,
+.monto {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.tabla-movimientos td.monto {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.monto-negativo {
+    color: #e64c61 !important;
+}
+
+.monto-positivo {
+    color: #159e62 !important;
+}
+
+/* NOTA INFORMATIVA */
+
+.nota-demo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 17px 0 0;
+    color: var(--gastos-texto-secundario);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.nota-demo i {
+    color: var(--gastos-azul);
+}
+
+/* RESPONSIVE: TABLETS */
+
+@media (max-width: 1200px) {
+    .gastos-main {
+        padding: 22px;
+    }
+
+    .resumen-grid {
+        gap: 14px;
+    }
+
+    .resumen-card {
+        padding: 19px;
+    }
+
+    .analisis-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .categorias-contenido {
+        justify-content: flex-start;
+        gap: 35px;
+    }
+}
+
+/* RESPONSIVE: MÓVILES */
+
+@media (max-width: 700px) {
+    .gastos-main {
+        padding: 16px;
+    }
+
+    .gastos-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .periodo {
+        width: 100%;
+    }
+
+    .resumen-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .resumen-card {
+        padding: 20px;
+    }
+
+    .resumen-icon {
+        margin-bottom: 13px;
+    }
+
+    .resumen-value {
+        font-size: 27px;
+    }
+
+    .contenido-card {
+        padding: 17px;
+    }
+
+    .categorias-contenido {
+        align-items: center;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .donut-wrap {
+        width: 180px;
+    }
+
+    .donut-chart {
+        width: 170px;
+    }
+
+    .leyenda-categorias {
+        width: 100%;
+    }
+
+    .card-heading h2 {
+        font-size: 16px;
+    }
+
+    .tabla-movimientos {
+        min-width: 760px;
+    }
+
+    .movimientos-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

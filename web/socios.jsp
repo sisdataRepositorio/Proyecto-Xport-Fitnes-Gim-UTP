@@ -22,7 +22,30 @@
             <li><a href="${pageContext.request.contextPath}/dashboard.jsp"><i class="fa-solid fa-house-user"></i><span>Inicio</span></a></li>
             <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=asistencia"><i class="fa-solid fa-user-check"></i><span>Asistencia</span></a></li>
             <li><a href="${pageContext.request.contextPath}/membresias.jsp"><i class="fa-solid fa-id-card"></i><span>Membresía</span></a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/socios.jsp"><i class="fa-solid fa-users"></i><span>Socios</span></a></li>
+            <li class="menu-desplegable" id="menuSocios">
+                <a href="#" class="menu-enlace"
+                   onclick="toggleSubmenu(event, 'submenuSocios')"
+                   aria-expanded="false">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Socios</span>
+                    <i class="fa-solid fa-chevron-down flecha-submenu"></i>
+                </a>
+
+                <ul class="submenu" id="submenuSocios">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/ClienteController?accion=listar">
+                            <i class="fa-solid fa-list"></i>
+                            <span>Ver Socios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/socios.jsp">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Registrar Socio</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=ventas"><i class="fa-solid fa-chart-line"></i><span>Ventas</span></a></li>
             <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=productos"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
             <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=gastos"><i class="fa-solid fa-money-bill"></i><span>Gastos</span></a></li>

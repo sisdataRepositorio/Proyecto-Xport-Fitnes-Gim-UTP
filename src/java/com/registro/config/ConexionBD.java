@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class ConexionBD {
     
     private static final String URL =
-        "jdbc:sqlserver://167.86.90.188;instanceName=SQL2016;"
+        "jdbc:sqlserver://aplicacionesutp.ddns.net;instanceName=SQL2016;"
         + "databaseName=BDGimnasio;"
         + "encrypt=false;"
         + "trustServerCertificate=true";

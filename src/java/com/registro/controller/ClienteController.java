@@ -70,7 +70,8 @@ public class ClienteController extends HttpServlet {
         request.setAttribute("listaClientesWeb", listaClientes);
         
         // Redireccionamos los datos hacia tu página JSP que pintará la tabla
-        request.getRequestDispatcher("listaClientes.jsp").forward(request, response);
+        request.getRequestDispatcher("/ListaClientes.jsp")
+       .forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
