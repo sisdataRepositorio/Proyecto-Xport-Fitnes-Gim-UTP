@@ -94,6 +94,30 @@ protected void processRequest(HttpServletRequest request,
             }
         }
 
+        
+        
+        // Mostrar dashboard de productos
+        if ("productos".equals(accion)) {
+
+            // Verificar que el usuario haya iniciado sesión
+            if (request.getSession(false) == null
+                    || request.getSession(false)
+                              .getAttribute("usuarioAutenticado") == null) {
+
+                response.sendRedirect(
+                        request.getContextPath()
+                        + "/UsuarioController?accion=login"
+                );
+                return;
+            }
+
+            request.getRequestDispatcher("/Productos.jsp")
+                   .forward(request, response);
+
+            return;
+        }
+
+        
 
         // Listado de empresas: conservar el comportamiento actual
         if (accion == null || accion.equals("listar")) {
