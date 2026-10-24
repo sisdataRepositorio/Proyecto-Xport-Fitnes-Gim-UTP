@@ -7,6 +7,7 @@ package com.registro.dao;
 import com.registro.config.ConexionBD;
 import com.registro.dto.ClienteDTO;
 import com.registro.dto.UsuarioDTO;
+import com.registro.dto.RolDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -90,6 +91,28 @@ public class UsuarioDAO {
         return usuario2; 
     }
     
+   public List<RolDTO> MuestraRoles() {
+    List<RolDTO> listaRoles = new ArrayList<>();
+    String sql = "{call sp_ListaRoles}";
+
+    try (Connection cn = ConexionBD.obtenerConexion();
+         CallableStatement st = cn.prepareCall(sql);
+         ResultSet rs = st.executeQuery()) {
+
+        while (rs.next()) {
+            RolDTO rol = new RolDTO();
+            rol.setrol_id(rs.getInt("rol_id"));
+            rol.setnombre_rol(rs.getString("nombre_rol"));
+            
+            listaRoles.add(rol);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return listaRoles; 
+}
     public boolean registrarPersonal(UsuarioDTO usuario) {
     Connection cn = null;
     CallableStatement st = null;
@@ -116,6 +139,8 @@ public class UsuarioDAO {
         st.setString(15, usuario.getCodEmp());
         st.setString(16, usuario.getFoto());
         st.setInt(17, usuario.getUsuarioMod());
+        st.setString(18, usuario.getRol());
+        st.setInt(19, usuario.getOpcUserSist());
         
         int filasAfectadas = st.executeUpdate();
         if (filasAfectadas > 0) registroExitoso = true;

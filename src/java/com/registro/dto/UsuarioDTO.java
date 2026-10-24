@@ -4,10 +4,15 @@
  */
 package com.registro.dto;
 
+import java.time.LocalDate;
 /**
  *
  * @author Administrator
  */
+
+/**
+  VARIABLES DE PERSONAL USUARIO
+*/
 public class UsuarioDTO {
     
     private int Personal_ID;
@@ -26,15 +31,20 @@ public class UsuarioDTO {
     private String Contraseña;
     private String CodEmp;
     private String Foto;
-    private int UsuarioMod;
+    
     private String Area;
     private String Rol;
+    
+    private int UsuarioMod;
+    private int OpcUserSist;
+
+
     
     public UsuarioDTO()
     {
     }
 
-    public UsuarioDTO(int Personal_ID,String EstadoGene, String ApellidoPaterno,String ApellidoMaterno,String Nombres,String Direccion,String Sexo,String RucDNI,String Telefono1,String Correo,String Referencia,String Area_ID,String Usuario,String Contraseña,String CodEmp,String Foto,int UsuarioMod,String Area, String Rol)
+    public UsuarioDTO(int Personal_ID,String EstadoGene, String ApellidoPaterno,String ApellidoMaterno,String Nombres,String Direccion,String Sexo,String RucDNI,String Telefono1,String Correo,String Referencia,String Area_ID,String Usuario,String Contraseña,String CodEmp,String Foto,int UsuarioMod,String Area, String Rol, int OpcUserSist)
     {
         this.Personal_ID=Personal_ID;
         this.EstadoGene=EstadoGene;
@@ -54,7 +64,8 @@ public class UsuarioDTO {
         this.Foto=Foto;
         this.UsuarioMod=UsuarioMod;       
         this.Area = Area;
-        this.Rol = Rol;
+        this.Rol = Rol;     
+        this.OpcUserSist = OpcUserSist;
     }
     
     public int getPersonal_ID() { return  Personal_ID;}
@@ -114,4 +125,11 @@ public class UsuarioDTO {
     public String getRol() {return Rol;}
     public void setRol(String Rol) {this.Rol = Rol;}
     
+    public int getOpcUserSist() {return OpcUserSist;}
+    public void setOpcUserSist(int OpcUserSist){this.OpcUserSist=OpcUserSist;}
+    
+
 }
+
+
+
