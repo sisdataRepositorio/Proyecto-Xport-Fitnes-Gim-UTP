@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
@@ -27,6 +26,25 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        .link-editar {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background-color: #e0f2fe;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .link-editar:hover {
+            background-color: #0284c7;
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
 
@@ -85,7 +103,7 @@
                     </li>
 
                     <li>
-                        <a href="${pageContext.request.contextPath}/socios.jsp">
+                        <a href="${pageContext.request.contextPath}/ClienteController?accion=nuevo">
                             <i class="fa-solid fa-user-plus"></i>
                             <span>Registrar Socio</span>
                         </a>
@@ -160,7 +178,7 @@
                 </div>
 
                 <a class="btn-nuevo-socio"
-                   href="${pageContext.request.contextPath}/socios.jsp">
+                   href="${pageContext.request.contextPath}/ClienteController?accion=nuevo">
                     <i class="fa-solid fa-user-plus"></i>
                     Registrar Socio
                 </a>
@@ -190,6 +208,7 @@
                             <th>Teléfono</th>
                             <th>Correo</th>
                             <th>Contacto</th>
+                            <th style="text-align: center;">Opciones</th>
                         </tr>
                     </thead>
 
@@ -206,12 +225,18 @@
                                 <td><c:out value="${cliente.telefono}"/></td>
                                 <td><c:out value="${cliente.correo}"/></td>
                                 <td><c:out value="${cliente.contacto}"/></td>
+                                <td style="text-align: center;">
+                                    <a class="link-editar" 
+                                       href="${pageContext.request.contextPath}/ClienteController?accion=editar&id=${cliente.cliente_ID}">
+                                        <i class="fa-solid fa-pen-to-square"></i> Editar
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
 
                         <c:if test="${empty listaClientesWeb}">
                             <tr>
-                                <td colspan="7" class="clientes-sin-datos">
+                                <td colspan="8" class="clientes-sin-datos">
                                     <i class="fa-solid fa-circle-info"></i>
                                     No hay clientes para mostrar.
                                 </td>

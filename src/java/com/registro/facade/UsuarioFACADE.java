@@ -27,4 +27,18 @@ public class UsuarioFACADE {
         // Aquí se podría agregar lógica de negocio adicional si fuera necesario
         return usuarioDAO.ValidaAcceso(username, password);
     }
+    
+    public UsuarioDTO GeneraCodPersonal()
+    {
+        return usuarioDAO.GeneraCodPersonal();
+    }
+    public boolean registrarPersonal(UsuarioDTO usuario)
+    {
+        return usuarioDAO.registrarPersonal(usuario);
+    }
+    
+    public boolean EliminarUsuario(UsuarioDTO usuario)
+    {
+        return usuarioDAO.EliminarPersonal(usuario);
+    }
 }

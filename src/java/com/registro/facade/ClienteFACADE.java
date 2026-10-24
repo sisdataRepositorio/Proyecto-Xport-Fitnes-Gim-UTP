@@ -1,22 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.registro.facade;
 
 import com.registro.dto.ClienteDTO;
 import com.registro.dao.ClienteDAO;
 import java.util.List;
-/**
- *
- * @author Ing
- */
+
 public class ClienteFACADE {
     
-    private final ClienteDAO dao=new ClienteDAO();
+    private final ClienteDAO dao = new ClienteDAO();
     
-    public List<ClienteDTO> ObtenerListadoCliente()
-    {
+    public List<ClienteDTO> ObtenerListadoCliente() {
         return dao.ListaClientes();
+    }
+    
+    public ClienteDTO buscarCliente(String id) {
+        return dao.buscarPorId(id);
+    }
+
+    public ClienteDTO autogenera_CodCliente() {
+        return dao.autogenera_CodCliente();
+    }
+
+    public boolean registrarCliente(ClienteDTO Cliente) {
+        return dao.registrarCliente(Cliente);
+    }
+
+    public boolean actualizarCliente(ClienteDTO Cliente) {
+        return dao.actualizarCliente(Cliente);
+    }
+    
+    public boolean EliminarCliente(ClienteDTO Cliente) {
+        return dao.EliminaCliente(Cliente);
     }
 }

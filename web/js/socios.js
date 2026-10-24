@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputFoto = document.getElementById("fotoSocio");
     const btnSubirFoto = document.getElementById("btnSubirFoto");
     const fotoAvatar = document.getElementById("fotoAvatar");
+    const inputAccion = document.getElementById("accion");
 
     btnSubirFoto.addEventListener("click", function () {
         inputFoto.click();
@@ -28,36 +29,41 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function nuevoSocio() {
-        form.reset();
-        inputFoto.value = "";
-        fotoAvatar.innerHTML = '<i class="fa-solid fa-circle-user"></i>';
-        document.getElementById("codigo").focus();
+        // Redirige al controlador para limpiar o pedir nuevo ID autogenerado
+        window.location.href = "ClienteController?accion=nuevo";
     }
 
     function salir() {
-        window.location.href = document.querySelector('.sidebar-menu a[href*="dashboard.jsp"]').href;
+        // Redirige al listado de socios
+        window.location.href = "ClienteController?accion=listar";
     }
 
     document.getElementById("btnNuevo").addEventListener("click", nuevoSocio);
     document.getElementById("btnSalir").addEventListener("click", salir);
 
     document.getElementById("btnGrabar").addEventListener("click", function () {
-        alert("El formulario todavía no está conectado al controlador ni a la base de datos.");
-    });
-    document.getElementById("btnActualizar").addEventListener("click", function () {
-        alert("La actualización se habilitará cuando conectemos el formulario a la base de datos.");
+        inputAccion.value = "grabar";
+        form.submit();
     });
 
+    document.getElementById("btnActualizar").addEventListener("click", function () {
+        inputAccion.value = "actualizar";
+        form.submit();
+    });
+
+    // Atajos de teclado
     document.addEventListener("keydown", function (event) {
         if (event.key === "F2") {
             event.preventDefault();
             nuevoSocio();
         } else if (event.key === "F3") {
             event.preventDefault();
-            document.getElementById("btnGrabar").click();
+            const btnG = document.getElementById("btnGrabar");
+            if (btnG && btnG.style.display !== "none") btnG.click();
         } else if (event.key === "F4") {
             event.preventDefault();
-            document.getElementById("btnActualizar").click();
+            const btnA = document.getElementById("btnActualizar");
+            if (btnA && btnA.style.display !== "none") btnA.click();
         } else if (event.key === "Escape") {
             salir();
         }

@@ -1,104 +1,103 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.registro.controller;
 
 import java.io.IOException;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.registro.dto.ClienteDTO;
 import com.registro.facade.ClienteFACADE;
-import java.util.List;
+import com.registro.dto.ClienteDTO;
 
-
-/**
- *
- * @author Ing
- */
 @WebServlet(name = "ClienteController", urlPatterns = {"/ClienteController"})
 public class ClienteController extends HttpServlet {
 
-    // CORRECCIÓN: Los atributos de clase van aquí, fuera de los métodos
-    private final ClienteFACADE clienteFacade;
+    private final ClienteFACADE facade = new ClienteFACADE();
 
-    // CORRECCIÓN: El constructor va al nivel de la clase
-    public ClienteController() {
-        this.clienteFacade = new ClienteFACADE();
-    }
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // CORRECCIÓN: Recogemos la acción que envía la vista (por defecto "listar")
         String accion = request.getParameter("accion");
-        if (accion == null) {
+        if (accion == null || accion.isEmpty()) {
             accion = "listar";
         }
 
         switch (accion) {
             case "listar":
-                procesarSolicitudListar(request, response);
+                List<ClienteDTO> lista = facade.ObtenerListadoCliente();
+                request.setAttribute("listaClientesWeb", lista);
+                request.getRequestDispatcher("ListaClientes.jsp").forward(request, response);
                 break;
-            // Aquí puedes agregar más casos en el futuro: "registrar", "eliminar", etc.
-            default:
-                procesarSolicitudListar(request, response);
-                break;
-        }
-    } // CORRECCIÓN: Se cierra adecuadamente el bloque de processRequest
 
-    // CORRECCIÓN: Pasamos el request y response para poder redirigir a un JSP
-    public void procesarSolicitudListar(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        
-        List<ClienteDTO> listaClientes = clienteFacade.ObtenerListadoCliente();
-        
-        if (listaClientes == null || listaClientes.isEmpty()) {
-            System.out.println("No hay clientes activos registrados.");
-        } else {
-            System.out.println("Clientes cargados exitosamente: " + listaClientes.size());
+            case "nuevo":
+                ClienteDTO auto = facade.autogenera_CodCliente();
+                request.setAttribute("socio", auto);
+                request.setAttribute("modo", "grabar");
+                request.getRequestDispatcher("socios.jsp").forward(request, response);
+                break;
+
+            case "editar":
+                String idEditar = request.getParameter("id");
+                ClienteDTO socio = facade.buscarCliente(idEditar);
+                request.setAttribute("socio", socio);
+                request.setAttribute("modo", "actualizar");
+                request.getRequestDispatcher("socios.jsp").forward(request, response);
+                break;
+
+            case "grabar":
+                ClienteDTO nuevo = extraerCliente(request);
+                facade.registrarCliente(nuevo);
+                response.sendRedirect("ClienteController?accion=listar");
+                break;
+
+            case "actualizar":
+                ClienteDTO editado = extraerCliente(request);
+                facade.actualizarCliente(editado);
+                response.sendRedirect("ClienteController?accion=listar");
+                break;
+
+            case "eliminar":
+                String idEliminar = request.getParameter("id");
+                ClienteDTO del = new ClienteDTO();
+                del.setCliente_ID(idEliminar);
+                facade.EliminarCliente(del);
+                response.sendRedirect("ClienteController?accion=listar");
+                break;
+
+            default:
+                response.sendRedirect("ClienteController?accion=listar");
+                break;
         }
-        
-        // ENLACE CON LA VISTA: Adjuntamos la lista a la petición web
-        request.setAttribute("listaClientesWeb", listaClientes);
-        
-        // Redireccionamos los datos hacia tu página JSP que pintará la tabla
-        request.getRequestDispatcher("/ListaClientes.jsp")
-       .forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     */
+    private ClienteDTO extraerCliente(HttpServletRequest request) {
+        ClienteDTO c = new ClienteDTO();
+        c.setCliente_ID(request.getParameter("codigo"));
+        c.setTipoId(request.getParameter("tipoDoc"));
+        c.setRucDNI(request.getParameter("nroDoc"));
+        c.setRazonSocial(request.getParameter("razonSocial"));
+        c.setDireccion(request.getParameter("direccion"));
+        c.setTelefono(request.getParameter("telefono1"));
+        c.setTelefono2(request.getParameter("telefono2"));
+        c.setSexo(request.getParameter("sexo"));
+        c.setCorreo(request.getParameter("correo"));
+        c.setEstado(request.getParameter("estado"));
+        c.setContacto(request.getParameter("contacto"));
+        c.setTelefonoCont(request.getParameter("telefonoCont"));
+        c.setFoto(request.getParameter("fotoUrl"));
+        return c;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     */
-    @Override
-    public String getServletInfo() {
-        return "Controlador Central de Clientes";
-    }// </editor-fold>
-
 }

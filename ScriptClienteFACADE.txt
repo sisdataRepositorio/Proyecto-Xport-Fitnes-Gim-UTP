@@ -1,0 +1,32 @@
+package com.registro.facade;
+
+import com.registro.dto.ClienteDTO;
+import com.registro.dao.ClienteDAO;
+import java.util.List;
+/**
+ *
+ * @author Ing
+ */
+public class ClienteFACADE {
+    
+    private final ClienteDAO dao=new ClienteDAO();
+    
+    public List<ClienteDTO> ObtenerListadoCliente()
+    {
+        return dao.ListaClientes();
+    }
+    
+    public ClienteDTO autogenera_CodCliente()
+    {
+        return dao.autogenera_CodCliente();
+    }
+    public boolean registrarCliente(ClienteDTO Cliente)
+    {
+        return dao.registrarCliente(Cliente);
+    }
+    
+    public boolean EliminarCliente(ClienteDTO Cliente)
+    {
+        return dao.EliminaCliente(Cliente);
+    }
+}
