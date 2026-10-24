@@ -5,7 +5,9 @@
 package com.registro.facade;
 import com.registro.dto.UsuarioDTO;
 import com.registro.dao.UsuarioDAO;
+import com.registro.dto.RolDTO;
 
+import java.util.List;
 /**
  *
  *
@@ -40,5 +42,10 @@ public class UsuarioFACADE {
     public boolean EliminarUsuario(UsuarioDTO usuario)
     {
         return usuarioDAO.EliminarPersonal(usuario);
+    }
+    
+    public List<RolDTO> ListaRoles()
+    {
+        return usuarioDAO.MuestraRoles();
     }
 }
