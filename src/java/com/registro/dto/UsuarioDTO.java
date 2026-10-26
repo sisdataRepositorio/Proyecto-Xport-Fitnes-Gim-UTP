@@ -37,6 +37,7 @@ public class UsuarioDTO {
     
     private int UsuarioMod;
     private int OpcUserSist;
+    private int Rol_ID;
 
 
     
@@ -127,6 +128,15 @@ public class UsuarioDTO {
     
     public int getOpcUserSist() {return OpcUserSist;}
     public void setOpcUserSist(int OpcUserSist){this.OpcUserSist=OpcUserSist;}
+
+    public int getRol_ID() {return Rol_ID;}
+    public void setRol_ID(int Rol_ID){this.Rol_ID=Rol_ID;}
+
+    public String getNombreCompleto() {
+        return ((Nombres == null ? "" : Nombres) + " "
+                + (ApellidoPaterno == null ? "" : ApellidoPaterno) + " "
+                + (ApellidoMaterno == null ? "" : ApellidoMaterno)).trim();
+    }
     
 
 }

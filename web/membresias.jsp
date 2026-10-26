@@ -13,49 +13,14 @@
     <title>Registro Membresía | Xport Fitness Gym</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/membresias.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 </head>
 <body>
 <div class="dashboard-container">
-    <aside class="sidebar">
-        <div class="saludo-admin"><h2>Hola, Administrador</h2></div>
-        <ul class="sidebar-menu">
-            <li><a href="${pageContext.request.contextPath}/dashboard.jsp"><i class="fa-solid fa-house-user"></i><span>Inicio</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=asistencia"><i class="fa-solid fa-user-check"></i><span>Asistencia</span></a></li>
-            <li class="active"><a href="${pageContext.request.contextPath}/membresias.jsp"><i class="fa-solid fa-id-card"></i><span>Membresía</span></a></li>
-            <li class="menu-desplegable" id="menuSocios">
-                <a href="#" class="menu-enlace"
-                   onclick="toggleSubmenu(event, 'submenuSocios')"
-                   aria-expanded="false">
-                    <i class="fa-solid fa-users"></i>
-                    <span>Socios</span>
-                    <i class="fa-solid fa-chevron-down flecha-submenu"></i>
-                </a>
-
-                <ul class="submenu" id="submenuSocios">
-                    <li>
-                        <a href="${pageContext.request.contextPath}/ClienteController?accion=listar">
-                            <i class="fa-solid fa-list"></i>
-                            <span>Ver Socios</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/socios.jsp">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <span>Registrar Socio</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=ventas"><i class="fa-solid fa-chart-line"></i><span>Ventas</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=productos"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=gastos"><i class="fa-solid fa-money-bill"></i><span>Gastos</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=almacen"><i class="fa-solid fa-warehouse"></i><span>Almacén</span></a></li>
-        </ul>
-        <ul class="sidebar-menu2">
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=configurar"><i class="fa-solid fa-gear"></i><span>Configurar</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span></a></li>
-        </ul>
-    </aside>
+    <jsp:include page="/WEB-INF/vistas/menuLateral.jsp">
+        <jsp:param name="opcion" value="membresias"/>
+        <jsp:param name="submenu" value=""/>
+    </jsp:include>
 
     <main class="main-content">
         <section class="panel">
@@ -203,5 +168,6 @@
     </main>
 </div>
 <script src="${pageContext.request.contextPath}/js/membresias.js"></script>
+<script src="${pageContext.request.contextPath}/js/menu.js"></script>
 </body>
 </html>

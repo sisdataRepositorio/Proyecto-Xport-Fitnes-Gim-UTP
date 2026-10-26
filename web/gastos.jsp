@@ -23,6 +23,7 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 </head>
 <body>
 <div class="dashboard-container">
@@ -78,6 +79,9 @@
                 </ul>
             </li>
 
+            <jsp:include page="/WEB-INF/vistas/menuPersonal.jsp">
+                <jsp:param name="opcion" value=""/>
+            </jsp:include>
             <li>
                 <a href="${pageContext.request.contextPath}/UsuarioController?accion=ventas">
                     <i class="fa-solid fa-chart-line"></i>
@@ -426,5 +430,6 @@
 
     </main>
 </div>
+<script src="${pageContext.request.contextPath}/js/menu.js"></script>
 </body>
 </html>

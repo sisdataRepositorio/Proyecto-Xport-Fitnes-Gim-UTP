@@ -45,120 +45,17 @@
             color: #ffffff;
         }
     </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 </head>
 <body>
 
 <div class="dashboard-container">
 
     <!-- MENÚ LATERAL -->
-    <aside class="sidebar">
-
-        <div class="saludo-admin">
-            <h2>Hola, Administrador</h2>
-        </div>
-
-        <ul class="sidebar-menu">
-
-            <li>
-                <a href="${pageContext.request.contextPath}/dashboard.jsp">
-                    <i class="fa-solid fa-house-user"></i>
-                    <span>Inicio</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/UsuarioController?accion=asistencia">
-                    <i class="fa-solid fa-user-check"></i>
-                    <span>Asistencia</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/membresias.jsp">
-                    <i class="fa-solid fa-id-card"></i>
-                    <span>Membresía</span>
-                </a>
-            </li>
-
-            <!-- SUBMENÚ SOCIOS -->
-            <li class="menu-desplegable abierto" id="menuSocios">
-
-                <a href="#"
-                   class="menu-enlace"
-                   onclick="toggleSubmenu(event, 'submenuSocios')"
-                   aria-expanded="true">
-
-                    <i class="fa-solid fa-users"></i>
-                    <span>Socios</span>
-                    <i class="fa-solid fa-chevron-down flecha-submenu"></i>
-                </a>
-
-                <ul class="submenu" id="submenuSocios">
-
-                   <li class="submenu-activo">
-                        <a href="${pageContext.request.contextPath}/ClienteController?accion=listar">
-                            <i class="fa-solid fa-list"></i>
-                            <span>Ver Socios</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="${pageContext.request.contextPath}/ClienteController?accion=nuevo">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <span>Registrar Socio</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/UsuarioController?accion=ventas">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span>Ventas</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/UsuarioController?accion=productos">
-                    <i class="fa-solid fa-box"></i>
-                    <span>Productos</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/gastos.jsp">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <span>Gastos</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/UsuarioController?accion=almacen">
-                    <i class="fa-solid fa-warehouse"></i>
-                    <span>Almacén</span>
-                </a>
-            </li>
-
-        </ul>
-
-        <ul class="sidebar-menu2">
-            <li>
-                <a href="${pageContext.request.contextPath}/UsuarioController?accion=configurar">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>Configurar</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="${pageContext.request.contextPath}/UsuarioController?accion=cerrarSesion">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Cerrar sesión</span>
-                </a>
-            </li>
-        </ul>
-
-    </aside>
+    <jsp:include page="/WEB-INF/vistas/menuLateral.jsp">
+        <jsp:param name="opcion" value="listarSocios"/>
+        <jsp:param name="submenu" value="socios"/>
+    </jsp:include>
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="dashboard-main">
@@ -260,5 +157,6 @@
 
 <script src="${pageContext.request.contextPath}/js/diseingreso.js"></script>
 
+<script src="${pageContext.request.contextPath}/js/menu.js"></script>
 </body>
 </html>

@@ -21,39 +21,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // INICIAR EL SUBMENU DE SOCIOS CERRADO
-    const menuSocios = document.getElementById("menuSocios");
-
-    if (menuSocios) {
-        menuSocios.classList.remove("abierto");
-
-        const enlace = menuSocios.querySelector(".menu-enlace");
-
-        if (enlace) {
-            enlace.setAttribute("aria-expanded", "false");
-        }
-    }
-
 });
-
-// ABRIR Y CERRAR EL SUBMENU DE SOCIOS
-function toggleSubmenu(event, submenuId) {
-    event.preventDefault();
-
-    const menu = document.getElementById("menuSocios");
-
-    if (!menu) {
-        return;
-    }
-
-    const submenu = document.getElementById(submenuId);
-    const enlace = menu.querySelector(".menu-enlace");
-
-    if (!submenu || !enlace) {
-        return;
-    }
-
-    const abierto = menu.classList.toggle("abierto");
-
-    enlace.setAttribute("aria-expanded", abierto ? "true" : "false");
-}

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <%
     if (session.getAttribute("usuarioAutenticado") == null) {
@@ -17,41 +18,14 @@
     <title>Inicio | Xport Fitness Gym</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/diseingreso.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu.css">
 </head>
 <body>
 <div class="dashboard-container">
-    <aside class="sidebar">
-        <div class="saludo-admin"><h2>Hola, Administrador</h2></div>
-        <ul class="sidebar-menu">
-            <li class="active"><a href="${pageContext.request.contextPath}/dashboard.jsp"><i class="fa-solid fa-house-user"></i><span>Inicio</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=asistencia"><i class="fa-solid fa-user-check"></i><span>Asistencia</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/membresias.jsp"><i class="fa-solid fa-id-card"></i><span>Membresía</span></a></li>   
-            <li class="menu-desplegable" id="menuSocios"><a href="#" class="menu-enlace" onclick="toggleSubmenu(event, 'submenuSocios')" aria-expanded="false"><i class="fa-solid fa-users"></i><span>Socios</span><i class="fa-solid fa-chevron-down flecha-submenu"></i></a>
-                <ul class="submenu" id="submenuSocios">
-                    <li>
-                       <a href="${pageContext.request.contextPath}/ClienteController?accion=listar">
-                            <i class="fa-solid fa-list"></i>
-                            <span>Ver Socios</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/socios.jsp">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <span>Registrar Socio</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=ventas"><i class="fa-solid fa-chart-line"></i><span>Ventas</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=productos"><i class="fa-solid fa-box"></i><span>Productos</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/gastos.jsp"><i class="fa-solid fa-money-bill"></i><span>Gastos</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=almacen"><i class="fa-solid fa-warehouse"></i><span>Almacén</span></a></li>
-        </ul>
-        <ul class="sidebar-menu2">
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=configurar"><i class="fa-solid fa-gear"></i><span>Configurar</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/UsuarioController?accion=cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span></a></li>
-        </ul>
-    </aside>
+   <jsp:include page="/WEB-INF/vistas/menuLateral.jsp">
+        <jsp:param name="opcion" value="inicio"/>
+        <jsp:param name="submenu" value=""/>
+    </jsp:include>
     <main class="dashboard-main">
         <div class="panel">
             <section class="bloques">
@@ -87,6 +61,19 @@
                     <article class="tarjeta-info"><div><p class="titulo-tarjeta">GANANCIAS DEL DÍA</p><p class="valor-tarjeta">S/ 1,285.50</p></div><i class="fa-solid fa-money-bill-wave icono-tarjeta"></i></article>
                     <article class="tarjeta-info"><div><p class="titulo-tarjeta">CLIENTES ACTIVOS</p><p class="valor-tarjeta">248</p></div><i class="fa-solid fa-users icono-tarjeta"></i></article>
                     <article class="tarjeta-info"><div><p class="titulo-tarjeta">CLIENTES POR VENCER</p><p class="valor-tarjeta">12</p></div><i class="fa-solid fa-clock icono-tarjeta"></i></article>
+                    <c:if test="${sessionScope.rol == 'Administrador'}">
+                        <jsp:useBean id="personalFacade" class="com.registro.facade.UsuarioFACADE" scope="request"/>
+                        <c:set var="resumenPersonal" value="${personalFacade.resumenPersonal()}"/>
+                        <a class="tarjeta-info tarjeta-link" href="${pageContext.request.contextPath}/PersonalController?accion=listar"
+                           title="Ir al módulo de Personal">
+                            <div>
+                                <p class="titulo-tarjeta">PERSONAL ACTIVO</p>
+                                <p class="valor-tarjeta">${resumenPersonal.activos}</p>
+                                <p class="detalle-tarjeta">${resumenPersonal.conAcceso} con acceso al sistema</p>
+                            </div>
+                            <i class="fa-solid fa-id-badge icono-tarjeta"></i>
+                        </a>
+                    </c:if>
                 </aside>
             </div>
             <section class="tarjetas-inferiores">
@@ -98,5 +85,6 @@
     </main>
 </div>
 <script src="${pageContext.request.contextPath}/js/diseingreso.js"></script>
+<script src="${pageContext.request.contextPath}/js/menu.js"></script>
 </body>
 </html>

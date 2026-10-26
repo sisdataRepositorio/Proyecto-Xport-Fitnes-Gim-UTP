@@ -1,0 +1,115 @@
+/* ===== SUBMENÚS DEL MENÚ LATERAL (Socios, Personal) ===== */
+
+.sidebar-menu > .menu-desplegable {
+    display: block;
+    width: 100%;
+}
+
+.sidebar-menu > .menu-desplegable > .menu-enlace {
+    position: relative;
+}
+
+.sidebar-menu .flecha-submenu {
+    margin-left: auto;
+    font-size: 11px;
+    transition: transform 0.25s ease;
+}
+
+/* Oculto por defecto */
+.sidebar-menu > .menu-desplegable > .submenu {
+    display: none;
+    list-style: none;
+    margin: 4px 0 8px;
+    padding: 5px 0 5px 15px;
+}
+
+/* Visible solo al abrir el menú */
+.sidebar-menu > .menu-desplegable.abierto > .submenu {
+    display: block;
+}
+
+.sidebar-menu > .menu-desplegable.abierto > .menu-enlace .flecha-submenu {
+    transform: rotate(180deg);
+}
+
+.sidebar-menu .submenu li {
+    display: block;
+    width: 100%;
+    margin: 3px 0;
+}
+
+.sidebar-menu .submenu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: #d8e5fa;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-menu .submenu li a i {
+    width: 18px;
+    text-align: center;
+}
+
+.sidebar-menu .submenu li a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* Opción actual del submenú */
+.sidebar-menu .submenu li.submenu-activo a {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* En pantallas chicas el submenú ocupa todo el ancho de la grilla del menú */
+@media (max-width: 900px) {
+    .sidebar-menu > .menu-desplegable {
+        grid-column: 1 / -1;
+    }
+}
+
+
+
+/* ==========================================
+   MENU CATALOGO: DESPLEGABLES ANIDADOS
+   ========================================== */
+
+/* El submenu de primer nivel permanece oculto */
+.sidebar-menu .menu-desplegable > .submenu {
+    display: none;
+}
+
+/* Mostrar el primer nivel cuando se abre Catalogo */
+.sidebar-menu .menu-desplegable.abierto > .submenu {
+    display: block;
+}
+
+/* Productos, Categorias y Marcas: ocultos por defecto */
+.sidebar-menu .menu-desplegable > .submenu-interno {
+    display: none;
+    list-style: none;
+    margin: 3px 0 8px;
+    padding: 0 0 0 12px;
+}
+
+/* Mostrar sus opciones solo al abrir el submenu correspondiente */
+.sidebar-menu .menu-desplegable.abierto > .submenu-interno {
+    display: block;
+}
+
+/* Flechas de todos los niveles */
+.sidebar-menu .menu-desplegable > .menu-enlace .flecha-submenu {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+
+/* Girar flecha cuando se despliega */
+.sidebar-menu .menu-desplegable.abierto > .menu-enlace .flecha-submenu {
+    transform: rotate(180deg);
+}
