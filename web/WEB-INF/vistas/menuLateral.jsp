@@ -105,7 +105,7 @@
         </li>
 
         <li class="<%= "almacen".equals(opcion) ? "active" : "" %>">
-            <a href="<%= contexto %>/Almacen.jsp">
+           <a href="<%= contexto %>/Almacen.jsp">
                 <i class="fa-solid fa-warehouse"></i>
                 <span>Almacén</span>
             </a>
