@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="registrarSocio" />
+    <ui:param name="menuSubmenu" value="socios" />
+    <ui:define name="title">#{clienteBean.modo eq 'actualizar' ? 'Editar socio' : 'Registrar socio'} | Xport Fitness Gym</ui:define>
+    <ui:define name="styles"><link rel="stylesheet" href="#{request.contextPath}/css/socios.css" /></ui:define>
+    <ui:define name="content">
+        <main class="main-content">
+            <section class="panel">
+                <div class="titulo-modulo">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <h1><h:outputText value="#{clienteBean.modo eq 'actualizar' ? 'Edición de Socios' : 'Registro de Socios'}" /></h1>
+                </div>
+                <p class="subtitulo-modulo">Registra y administra la información de los socios del gimnasio.</p>
+                <h:messages globalOnly="true" layout="list" styleClass="mensaje-formulario" />
+                <h:form id="formSocios" prependId="false" styleClass="form-socios">
+                    <div class="contenido-form">
+                        <div class="campos-socio">
+                            <div class="fila fila-tres">
+                                <div class="campo">
+                                    <h:outputLabel for="codigo"><i class="fa-solid fa-hashtag"></i> Código</h:outputLabel>
+                                    <h:inputText id="codigo" value="#{clienteBean.socio.cliente_ID}" readonly="true" />
+                                </div>
+                                <div class="campo">
+                                    <h:outputLabel for="tipoDocumento"><i class="fa-solid fa-id-card"></i> Tipo de documento</h:outputLabel>
+                                    <h:selectOneMenu id="tipoDocumento" value="#{clienteBean.socio.tipoId}">
+                                        <f:selectItem itemLabel="DNI" itemValue="DNI" />
+                                        <f:selectItem itemLabel="RUC" itemValue="RUC" />
+                                        <f:selectItem itemLabel="CE" itemValue="CE" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="campo">
+                                    <h:outputLabel for="numeroDocumento"><i class="fa-solid fa-address-card"></i> Número de documento</h:outputLabel>
+                                    <h:inputText id="numeroDocumento" value="#{clienteBean.socio.rucDNI}" maxlength="11" />
+                                </div>
+                            </div>
+                            <div class="campo campo-full">
+                                <h:outputLabel for="nombre"><i class="fa-solid fa-user"></i> Nombre / Razón social *</h:outputLabel>
+                                <h:inputText id="nombre" value="#{clienteBean.socio.razonSocial}" maxlength="120" required="true" requiredMessage="Ingrese el nombre o razón social." />
+                                <h:message for="nombre" styleClass="campo-error" />
+                            </div>
+                            <div class="campo campo-full">
+                                <h:outputLabel for="direccion"><i class="fa-solid fa-location-dot"></i> Dirección</h:outputLabel>
+                                <h:inputText id="direccion" value="#{clienteBean.socio.direccion}" maxlength="180" />
+                            </div>
+                            <div class="fila fila-tres">
+                                <div class="campo"><h:outputLabel for="telefono1"><i class="fa-solid fa-phone"></i> Teléfono</h:outputLabel><h:inputText id="telefono1" value="#{clienteBean.socio.telefono}" maxlength="25" /></div>
+                                <div class="campo"><h:outputLabel for="telefono2"><i class="fa-solid fa-phone-volume"></i> Teléfono alternativo</h:outputLabel><h:inputText id="telefono2" value="#{clienteBean.socio.telefono2}" maxlength="25" /></div>
+                                <div class="campo"><h:outputLabel for="correo"><i class="fa-solid fa-envelope"></i> Correo</h:outputLabel><h:inputText id="correo" value="#{clienteBean.socio.correo}" maxlength="120" /></div>
+                            </div>
+                            <div class="fila fila-tres">
+                                <div class="campo"><h:outputLabel for="sexo"><i class="fa-solid fa-venus-mars"></i> Sexo</h:outputLabel><h:selectOneMenu id="sexo" value="#{clienteBean.socio.sexo}"><f:selectItem itemLabel="No especificado" itemValue=""/><f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO"/><f:selectItem itemLabel="FEMENINO" itemValue="FEMENINO"/></h:selectOneMenu></div>
+                                <div class="campo"><h:outputLabel for="estado"><i class="fa-solid fa-circle-check"></i> Estado</h:outputLabel><h:selectOneMenu id="estado" value="#{clienteBean.socio.estado}"><f:selectItem itemLabel="Activo" itemValue="Activo"/><f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/></h:selectOneMenu></div>
+                                <div class="campo"><h:outputLabel for="contacto"><i class="fa-solid fa-user-shield"></i> Contacto</h:outputLabel><h:inputText id="contacto" value="#{clienteBean.socio.contacto}" maxlength="100" /></div>
+                            </div>
+                            <div class="campo"><h:outputLabel for="telefonoCont"><i class="fa-solid fa-phone"></i> Teléfono de contacto</h:outputLabel><h:inputText id="telefonoCont" value="#{clienteBean.socio.telefonoCont}" maxlength="25" /></div>
+                            <div class="campo campo-full"><h:outputLabel for="fotoUrl"><i class="fa-solid fa-image"></i> URL de foto (opcional)</h:outputLabel><h:inputText id="fotoUrl" value="#{clienteBean.socio.foto}" maxlength="500" /></div>
+                        </div>
+                        <aside class="foto-card">
+                            <div class="foto-titulo">FOTO DEL SOCIO</div>
+                            <div class="foto-avatar" id="fotoAvatar"><i class="fa-solid fa-circle-user"></i></div>
+                            <p class="foto-ayuda">Puedes almacenar una URL de imagen. La carga física del archivo se integrará en una etapa posterior.</p>
+                            <div class="huella-titulo">HUELLA DACTILAR</div>
+                            <div class="huella-box"><i class="fa-solid fa-fingerprint"></i></div>
+                            <p class="foto-ayuda">La captura de huella requiere un lector compatible.</p>
+                        </aside>
+                    </div>
+                    <div class="botones-form">
+                        <h:commandButton value="#{clienteBean.modo eq 'actualizar' ? 'Actualizar' : 'Grabar'}" action="#{clienteBean.guardar}" styleClass="btn-form btn-guardar" />
+                        <h:commandButton value="Limpiar" type="reset" styleClass="btn-form btn-limpiar" />
+                        <h:commandButton value="Salir" action="#{clienteBean.cancelar}" immediate="true" styleClass="btn-form btn-salir" />
+                    </div>
+                </h:form>
+            </section>
+        </main>
+    </ui:define>
+</ui:composition>

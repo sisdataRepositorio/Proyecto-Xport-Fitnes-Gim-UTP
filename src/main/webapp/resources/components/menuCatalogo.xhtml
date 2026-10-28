@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html">
+<cc:interface>
+    <cc:attribute name="opcion" type="java.lang.String" default=""/>
+</cc:interface>
+<cc:implementation>
+    <ui:fragment rendered="#{sessionScope.rol eq 'Administrador' or sessionScope.rol eq 'ADMIN'}">
+        <li class="menu-desplegable #{cc.attrs.opcion eq 'listarProductos' or cc.attrs.opcion eq 'nuevoProducto' or cc.attrs.opcion eq 'listarCategorias' or cc.attrs.opcion eq 'nuevaCategoria' or cc.attrs.opcion eq 'listarMarcas' or cc.attrs.opcion eq 'nuevaMarca' ? 'abierto' : ''}" id="menuCatalogo">
+            <a href="#" class="menu-enlace" onclick="toggleSubmenu(event, 'submenuCatalogo')"
+               aria-expanded="#{cc.attrs.opcion eq 'listarProductos' or cc.attrs.opcion eq 'nuevoProducto' or cc.attrs.opcion eq 'listarCategorias' or cc.attrs.opcion eq 'nuevaCategoria' or cc.attrs.opcion eq 'listarMarcas' or cc.attrs.opcion eq 'nuevaMarca'}">
+                <i class="fa-solid fa-folder-open"></i><span>Catálogo</span>
+                <i class="fa-solid fa-chevron-down flecha-submenu"></i>
+            </a>
+            <ul class="submenu" id="submenuCatalogo">
+                <li class="menu-desplegable #{cc.attrs.opcion eq 'listarProductos' or cc.attrs.opcion eq 'nuevoProducto' ? 'abierto' : ''}" id="menuProductos">
+                    <a href="#" class="menu-enlace" onclick="toggleSubmenu(event, 'submenuItemsProductos')">
+                        <i class="fa-solid fa-box"></i><span>Productos</span><i class="fa-solid fa-chevron-down flecha-submenu"></i>
+                    </a>
+                    <ul class="submenu-interno" id="submenuItemsProductos">
+                        <li class="#{cc.attrs.opcion eq 'listarProductos' ? 'submenu-activo' : ''}"><h:link outcome="/Productos.xhtml"><i class="fa-solid fa-list"></i><span>Ver Productos</span></h:link></li>
+                        <li class="#{cc.attrs.opcion eq 'nuevoProducto' ? 'submenu-activo' : ''}"><h:link outcome="/RegistrarProducto.xhtml"><i class="fa-solid fa-plus"></i><span>Registrar Productos</span></h:link></li>
+                    </ul>
+                </li>
+                <li class="menu-desplegable #{cc.attrs.opcion eq 'listarCategorias' or cc.attrs.opcion eq 'nuevaCategoria' ? 'abierto' : ''}" id="menuCategorias">
+                    <a href="#" class="menu-enlace" onclick="toggleSubmenu(event, 'submenuItemsCategorias')">
+                        <i class="fa-solid fa-tags"></i><span>Categorías</span><i class="fa-solid fa-chevron-down flecha-submenu"></i>
+                    </a>
+                    <ul class="submenu-interno" id="submenuItemsCategorias">
+                        <li class="#{cc.attrs.opcion eq 'listarCategorias' ? 'submenu-activo' : ''}"><h:link outcome="/Categorias.xhtml"><i class="fa-solid fa-list"></i><span>Ver Categorías</span></h:link></li>
+                        <li class="#{cc.attrs.opcion eq 'nuevaCategoria' ? 'submenu-activo' : ''}"><h:link outcome="/RegistrarCategoria.xhtml"><i class="fa-solid fa-plus"></i><span>Registrar Categorías</span></h:link></li>
+                    </ul>
+                </li>
+                <li class="menu-desplegable #{cc.attrs.opcion eq 'listarMarcas' or cc.attrs.opcion eq 'nuevaMarca' ? 'abierto' : ''}" id="menuMarcas">
+                    <a href="#" class="menu-enlace" onclick="toggleSubmenu(event, 'submenuItemsMarcas')">
+                        <i class="fa-solid fa-copyright"></i><span>Marca de Productos</span><i class="fa-solid fa-chevron-down flecha-submenu"></i>
+                    </a>
+                    <ul class="submenu-interno" id="submenuItemsMarcas">
+                        <li class="#{cc.attrs.opcion eq 'listarMarcas' ? 'submenu-activo' : ''}"><h:link outcome="/Marcas.xhtml"><i class="fa-solid fa-list"></i><span>Ver Marcas</span></h:link></li>
+                        <li class="#{cc.attrs.opcion eq 'nuevaMarca' ? 'submenu-activo' : ''}"><h:link outcome="/RegistrarMarca.xhtml"><i class="fa-solid fa-plus"></i><span>Registrar Marcas</span></h:link></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ui:fragment>
+</cc:implementation>
+</html>

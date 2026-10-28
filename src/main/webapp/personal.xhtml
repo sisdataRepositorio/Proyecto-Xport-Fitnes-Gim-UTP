@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="nuevoPersonal" />
+    <ui:param name="menuSubmenu" value="" />
+    <ui:define name="title">#{personalBean.edicion ? 'Edición de Personal' : 'Registro de Personal'} | Xport Fitness Gym</ui:define>
+    <ui:define name="styles">
+        <link rel="stylesheet" href="#{request.contextPath}/css/socios.css" />
+        <style type="text/css"><![CDATA[
+            .campo input[readonly]{background:#f1f5f9;cursor:not-allowed}
+            .seccion-titulo{display:flex;align-items:center;gap:8px;margin:6px 0 0;padding-top:14px;border-top:1px solid #e0e6ef;font-size:14px;font-weight:700;color:#10234d}
+            .seccion-titulo i{color:var(--blue)}
+            .check-acceso{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#263b60;cursor:pointer}
+            .check-acceso input{width:16px;height:16px;cursor:pointer}
+            .ayuda{font-size:11px;color:#718096}.mensaje-formulario{color:#991b1b}
+            .botones-form{grid-template-columns:repeat(3,minmax(0,1fr))}
+        ]]></style>
+    </ui:define>
+    <ui:define name="content">
+        <main class="main-content">
+            <section class="panel">
+                <div class="titulo-modulo"><i class="fa-solid fa-id-badge"></i><h1><h:outputText value="#{personalBean.edicion ? 'Edición de Personal' : 'Registro de Personal'}" /></h1></div>
+                <h:messages globalOnly="true" layout="list" styleClass="mensaje-formulario" />
+                <h:form id="formPersonal" prependId="false">
+                    <div class="contenido-form">
+                        <div class="campos-socio">
+                            <div class="fila fila-tres">
+                                <div class="campo"><h:outputLabel for="codigo">Código</h:outputLabel><h:inputText id="codigo" value="#{personalBean.personal.personal_ID}" readonly="true" /><h:outputText value="Se confirma al grabar." styleClass="ayuda" rendered="#{not personalBean.edicion}" /></div>
+                                <div class="campo"><h:outputLabel for="nroDoc">DNI / RUC</h:outputLabel><h:inputText id="nroDoc" value="#{personalBean.personal.rucDNI}" maxlength="11" /></div>
+                                <div class="campo"><h:outputLabel for="estado">Estado</h:outputLabel><h:selectOneMenu id="estado" value="#{personalBean.personal.estadoGene}"><f:selectItem itemLabel="Activo" itemValue="Activo"/><f:selectItem itemLabel="Inactivo" itemValue="Inactivo"/></h:selectOneMenu></div>
+                            </div>
+                            <div class="fila fila-tres">
+                                <div class="campo"><h:outputLabel for="apellidoPaterno">Apellido paterno *</h:outputLabel><h:inputText id="apellidoPaterno" value="#{personalBean.personal.apellidoPaterno}" maxlength="50" required="true" requiredMessage="Ingrese el apellido paterno." /></div>
+                                <div class="campo"><h:outputLabel for="apellidoMaterno">Apellido materno *</h:outputLabel><h:inputText id="apellidoMaterno" value="#{personalBean.personal.apellidoMaterno}" maxlength="50" required="true" requiredMessage="Ingrese el apellido materno." /></div>
+                                <div class="campo"><h:outputLabel for="nombres">Nombres *</h:outputLabel><h:inputText id="nombres" value="#{personalBean.personal.nombres}" maxlength="50" required="true" requiredMessage="Ingrese los nombres." /></div>
+                            </div>
+                            <div class="campo campo-full"><h:outputLabel for="direccion">Dirección</h:outputLabel><h:inputText id="direccion" value="#{personalBean.personal.direccion}" maxlength="100" /></div>
+                            <div class="fila fila-tres">
+                                <div class="campo"><h:outputLabel for="telefono">Teléfono</h:outputLabel><h:inputText id="telefono" value="#{personalBean.personal.telefono1}" maxlength="20" /></div>
+                                <div class="campo"><h:outputLabel for="correo">Correo</h:outputLabel><h:inputText id="correo" value="#{personalBean.personal.correo}" maxlength="100" /></div>
+                                <div class="campo"><h:outputLabel for="sexo">Sexo</h:outputLabel><h:selectOneMenu id="sexo" value="#{personalBean.personal.sexo}"><f:selectItem itemLabel="MASCULINO" itemValue="MASCULINO"/><f:selectItem itemLabel="FEMENINO" itemValue="FEMENINO"/></h:selectOneMenu></div>
+                            </div>
+                            <div class="campo campo-full"><h:outputLabel for="area">Área *</h:outputLabel><h:selectOneMenu id="area" value="#{personalBean.personal.area_ID}" required="true" requiredMessage="Seleccione el área del personal."><f:selectItem itemLabel="-- Seleccione --" itemValue=""/><f:selectItems value="#{personalBean.listaAreas}" var="a" itemValue="#{a.area_ID}" itemLabel="#{a.descripcionArea}" /></h:selectOneMenu></div>
+                            <div class="campo campo-full"><h:outputLabel for="referencia">Referencia</h:outputLabel><h:inputText id="referencia" value="#{personalBean.personal.referencia}" maxlength="150" /></div>
+                            <div class="seccion-titulo"><i class="fa-solid fa-shield-halved"></i> Acceso al sistema</div>
+                            <label class="check-acceso"><h:selectBooleanCheckbox id="accesoSistema" value="#{personalBean.requiereAcceso}" /> Habilitar usuario para ingresar al sistema</label>
+                            <h:panelGroup id="datosAcceso" layout="block" styleClass="datos-acceso" style="display:#{personalBean.requiereAcceso ? 'block' : 'none'}">
+                                <div class="fila fila-tres">
+                                    <div class="campo"><h:outputLabel for="usuario">Usuario *</h:outputLabel><h:inputText id="usuario" value="#{personalBean.personal.usuario}" maxlength="50" /></div>
+                                    <div class="campo"><h:outputLabel for="contrasena">Contraseña #{personalBean.edicion ? '(solo si desea cambiarla)' : '*'}</h:outputLabel><h:inputSecret id="contrasena" value="#{personalBean.contrasena}" redisplay="false" /></div>
+                                    <div class="campo"><h:outputLabel for="rol">Rol *</h:outputLabel><h:selectOneMenu id="rol" value="#{personalBean.personal.rol_ID}"><f:selectItem itemLabel="-- Seleccione --" itemValue="0"/><f:selectItems value="#{personalBean.listaRoles}" var="r" itemValue="#{r.rol_id}" itemLabel="#{r.nombre_rol}" /></h:selectOneMenu></div>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                        <aside class="foto-card">
+                            <div class="foto-titulo">FOTO DEL PERSONAL</div>
+                            <div class="foto-avatar"><i class="fa-solid fa-circle-user"></i></div>
+                            <p class="ayuda">La carga de fotografía se integrará con el repositorio de archivos.</p>
+                            <div class="campo"><h:outputLabel for="foto">URL de foto</h:outputLabel><h:inputText id="foto" value="#{personalBean.personal.foto}" maxlength="500" /></div>
+                        </aside>
+                    </div>
+                    <div class="botones-form">
+                        <h:commandButton value="#{personalBean.edicion ? 'Actualizar' : 'Guardar'}" action="#{personalBean.guardar}" styleClass="btn-form btn-guardar" />
+                        <h:commandButton value="Limpiar" type="reset" styleClass="btn-form btn-limpiar" />
+                        <h:commandButton value="Salir" action="#{personalBean.cancelar}" immediate="true" styleClass="btn-form btn-salir" />
+                    </div>
+                </h:form>
+            </section>
+        </main>
+    </ui:define>
+    <ui:define name="scripts">
+       <script type="text/javascript">
+            (function () {
+                var toggle = document.getElementById("accesoSistema");
+                var panel = document.getElementById("datosAcceso");
+
+                if (toggle !== null) {
+                    if (panel !== null) {
+                        // Mostrar u ocultar los datos de acceso al sistema.
+                        panel.style.display = toggle.checked ? "block" : "none";
+
+                        toggle.addEventListener("change", function () {
+                            if (toggle.checked) {
+                                panel.style.display = "block";
+                            } else {
+                                panel.style.display = "none";
+                            }
+                        });
+                    }
+                }
+            }());
+        </script>
+    </ui:define>
+</ui:composition>

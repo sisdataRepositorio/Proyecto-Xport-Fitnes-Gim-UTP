@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="listarSocios" />
+    <ui:param name="menuSubmenu" value="socios" />
+    <ui:define name="title">Ver Socios | Xport Fitness Gym</ui:define>
+    <ui:define name="styles"><link rel="stylesheet" href="#{request.contextPath}/css/listaclientes.css" /></ui:define>
+    <ui:define name="content">
+        <main class="dashboard-main">
+            <section class="panel panel-listaclientes">
+                <header class="clientes-header">
+                    <div class="clientes-titulo">
+                        <div class="clientes-icono"><i class="fa-solid fa-users"></i></div>
+                        <div><h1>Ver Socios</h1><p>Listado de clientes registrados en Xport Fitness Gym</p></div>
+                    </div>
+                    <h:form id="nuevoSocioForm" prependId="false">
+                        <h:commandLink action="#{clienteBean.nuevo}" styleClass="btn-nuevo-socio">
+                            <i class="fa-solid fa-user-plus"></i> Registrar Socio
+                        </h:commandLink>
+                    </h:form>
+                </header>
+
+                <h:messages globalOnly="true" layout="list" styleClass="mensaje-lista" />
+                <h:panelGroup layout="block" rendered="#{not empty flash.mensajeSocios}" styleClass="mensaje-ok">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h:outputText value="#{flash.mensajeSocios}" />
+                </h:panelGroup>
+
+                <div class="clientes-resumen">
+                    <div><i class="fa-solid fa-address-book"></i><span>Listado de clientes</span></div>
+                    <span class="clientes-total">Registros: <strong>#{clienteBean.listaClientes.size()}</strong></span>
+                </div>
+
+                <div class="clientes-tabla-scroll">
+                    <h:dataTable value="#{clienteBean.listaClientes}" var="cliente" styleClass="tabla-clientes"
+                                 rendered="#{not empty clienteBean.listaClientes}">
+                        <h:column><f:facet name="header">ID</f:facet><h:outputText value="#{cliente.cliente_ID}" /></h:column>
+                        <h:column><f:facet name="header">Razón Social</f:facet><span class="cliente-razon"><h:outputText value="#{cliente.razonSocial}" /></span></h:column>
+                        <h:column><f:facet name="header">RUC / DNI</f:facet><h:outputText value="#{cliente.rucDNI}" /></h:column>
+                        <h:column><f:facet name="header">Dirección</f:facet><h:outputText value="#{cliente.direccion}" /></h:column>
+                        <h:column><f:facet name="header">Teléfono</f:facet><h:outputText value="#{cliente.telefono}" /></h:column>
+                        <h:column><f:facet name="header">Correo</f:facet><h:outputText value="#{cliente.correo}" /></h:column>
+                        <h:column><f:facet name="header">Contacto</f:facet><h:outputText value="#{cliente.contacto}" /></h:column>
+                        <h:column>
+                            <f:facet name="header">Opciones</f:facet>
+                            <h:form prependId="false">
+                                <h:commandLink action="#{clienteBean.editar(cliente.cliente_ID)}" styleClass="link-editar">
+                                    <i class="fa-solid fa-pen-to-square"></i> Editar
+                                </h:commandLink>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                    <h:panelGroup layout="block" rendered="#{empty clienteBean.listaClientes}" styleClass="clientes-sin-datos">
+                        <i class="fa-solid fa-circle-info"></i> No hay clientes para mostrar.
+                    </h:panelGroup>
+                </div>
+                <footer class="clientes-footer"><i class="fa-solid fa-circle-info"></i> Los datos se consultan mediante ClienteFACADE.</footer>
+            </section>
+        </main>
+    </ui:define>
+</ui:composition>

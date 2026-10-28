@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:nav="jakarta.faces.composite/components">
+<cc:interface>
+    <cc:attribute name="opcion" type="java.lang.String" default=""/>
+    <cc:attribute name="submenu" type="java.lang.String" default=""/>
+</cc:interface>
+<cc:implementation>
+    <aside class="sidebar">
+        <div class="saludo-admin">
+            <h2>Hola, #{empty sessionScope.usuario ? 'Administrador' : sessionScope.usuario}</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="#{cc.attrs.opcion eq 'inicio' ? 'active' : ''}">
+                <h:link outcome="/dashboard.xhtml"><i class="fa-solid fa-house-user"></i><span>Inicio</span></h:link>
+            </li>
+            <li class="#{cc.attrs.opcion eq 'asistencia' ? 'active' : ''}">
+                <h:link outcome="/asistencia.xhtml"><i class="fa-solid fa-user-check"></i><span>Asistencia</span></h:link>
+            </li>
+            <li class="#{cc.attrs.opcion eq 'membresias' ? 'active' : ''}">
+                <h:link outcome="/membresias.xhtml"><i class="fa-solid fa-id-card"></i><span>Membresía</span></h:link>
+            </li>
+            <li class="menu-desplegable #{cc.attrs.submenu eq 'socios' ? 'abierto' : ''}" id="menuSocios">
+                <a href="#" class="menu-enlace" onclick="toggleSubmenu(event, 'submenuSocios')" aria-expanded="#{cc.attrs.submenu eq 'socios'}">
+                    <i class="fa-solid fa-users"></i><span>Socios</span><i class="fa-solid fa-chevron-down flecha-submenu"></i>
+                </a>
+                <ul class="submenu" id="submenuSocios">
+                    <li class="#{cc.attrs.opcion eq 'listarSocios' ? 'submenu-activo' : ''}"><h:link outcome="/ListaClientes.xhtml"><i class="fa-solid fa-list"></i><span>Ver Socios</span></h:link></li>
+                    <li class="#{cc.attrs.opcion eq 'registrarSocio' ? 'submenu-activo' : ''}"><h:link outcome="/socios.xhtml"><i class="fa-solid fa-user-plus"></i><span>Registrar Socio</span></h:link></li>
+                </ul>
+            </li>
+            <nav:menuPersonal opcion="#{cc.attrs.opcion}"/>
+            <li class="#{cc.attrs.opcion eq 'ventas' ? 'active' : ''}"><h:link outcome="/Ventas.xhtml"><i class="fa-solid fa-chart-line"></i><span>Ventas</span></h:link></li>
+            <li class="#{cc.attrs.opcion eq 'puntoVenta' ? 'active' : ''}"><h:link outcome="/PuntoVenta.xhtml"><i class="fa-solid fa-cash-register"></i><span>Punto de Venta</span></h:link></li>
+            <nav:menuCatalogo opcion="#{cc.attrs.opcion}"/>
+            <li class="#{cc.attrs.opcion eq 'gastos' ? 'active' : ''}"><h:link outcome="/gastos.xhtml"><i class="fa-solid fa-money-bill"></i><span>Gastos</span></h:link></li>
+            <li class="#{cc.attrs.opcion eq 'almacen' ? 'active' : ''}"><h:link outcome="/Almacen.xhtml"><i class="fa-solid fa-warehouse"></i><span>Almacén</span></h:link></li>
+        </ul>
+        <ul class="sidebar-menu2">
+            <li><h:link outcome="/configurar.xhtml"><i class="fa-solid fa-gear"></i><span>Configurar</span></h:link></li>
+            <li>
+                <h:form id="formCerrarSesion" styleClass="menu-logout-form">
+                    <h:commandLink action="#{loginBean.cerrarSesion}" immediate="true">
+                        <i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span>
+                    </h:commandLink>
+                </h:form>
+            </li>
+        </ul>
+    </aside>
+</cc:implementation>
+</html>

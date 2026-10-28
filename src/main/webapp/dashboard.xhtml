@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="inicio" />
+    <ui:param name="menuSubmenu" value="" />
+    <ui:define name="title">Inicio | Xport Fitness Gym</ui:define>
+    <ui:define name="styles">
+        <style type="text/css"><![CDATA[
+            .dashboard-main{min-width:0;flex:1;padding:24px;background:#eef2f8}
+            .dashboard-main .panel{background:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 15px rgba(16,38,83,.08)}
+            .dashboard-main .bloques{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:20px}
+            .dashboard-main .bloques a{display:flex;align-items:center;justify-content:center;gap:9px;min-height:42px;border-radius:8px;background:#2864f0;color:#fff;text-decoration:none;font-size:12px;font-weight:700;box-shadow:0 3px 7px rgba(40,100,240,.2)}
+            .dashboard-main .fila-principal{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:16px}
+            .dashboard-main .tabla-thead h3{font-size:13px;color:#102653}
+            .dashboard-main .tabla{width:100%;border-collapse:collapse;font-size:11px}
+            .dashboard-main .tabla th{background:#1e40af;color:#fff;padding:11px 9px;text-align:left}
+            .dashboard-main .tabla td{padding:12px 9px;border-bottom:1px solid #e5eaf2}
+            .dashboard-main .tarjetas-laterales{display:flex;flex-direction:column;gap:10px}
+            .dashboard-main .tarjeta-info{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border:1px solid #dce5f1;border-radius:9px;color:#102653;background:#fff;text-decoration:none;box-shadow:0 2px 6px rgba(16,38,83,.04)}
+            .dashboard-main .titulo-tarjeta{margin:0 0 5px;font-size:9px;color:#64748b}
+            .dashboard-main .valor-tarjeta{margin:0;font-size:16px;font-weight:800}
+            .dashboard-main .detalle-tarjeta{margin:5px 0 0;color:#64748b;font-size:10px}
+            .dashboard-main .icono-tarjeta{color:#2864f0;font-size:21px}
+            .dashboard-main .tarjetas-inferiores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+            .dashboard-main .tarjeta-inferior{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid #dce5f1;border-radius:9px;background:#fff;color:#102653}
+            .dashboard-main .tarjeta-inferior>i{font-size:22px;color:#2864f0}
+            .dashboard-main .titulo-inferior{font-size:10px;color:#64748b;margin:0 0 6px}
+            .dashboard-main .tarjeta-inferior p{font-size:11px;margin:3px 0}
+            .dashboard-main .select-estado{border:0;background:transparent;color:#102653;font-size:11px}
+            .dashboard-main .punto{display:inline-block;width:7px;height:7px;border-radius:50%;background:#16a34a}
+            @media(max-width:1100px){.dashboard-main .fila-principal{grid-template-columns:1fr}.dashboard-main .tarjetas-laterales{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+            @media(max-width:750px){.dashboard-main{padding:12px}.dashboard-main .bloques,.dashboard-main .tarjetas-inferiores{grid-template-columns:1fr}.dashboard-main .tabla{min-width:700px}.dashboard-main .tarjetas-laterales{grid-template-columns:1fr}}
+        ]]></style>
+    </ui:define>
+    <ui:define name="content">
+        <main class="dashboard-main">
+            <div class="panel">
+                <section class="bloques">
+                    <h:link outcome="/socios.xhtml" styleClass="btn-registrar"><i class="fa-solid fa-user-plus"></i> Inscribir</h:link>
+                    <h:link outcome="/membresias.xhtml" styleClass="btn-renovar"><i class="fa-solid fa-arrows-rotate"></i> Renovar</h:link>
+                    <h:link outcome="/PuntoVenta.xhtml" styleClass="btn-transaccion"><i class="fa-solid fa-right-left"></i> Transacción</h:link>
+                </section>
+                <div class="fila-principal">
+                    <section class="tabla-thead">
+                        <h3>Entradas del día: <span id="fechaActual"></span></h3>
+                        <div class="tabla-scroll">
+                            <table class="tabla">
+                                <thead><tr><th>Nombre</th><th>Documento</th><th>Hora</th><th>Estado</th><th>Expiración</th><th>Intento</th><th>Acciones</th></tr></thead>
+                                <tbody><tr>
+                                    <td>Michael Cueva</td><td>00000001</td><td>09:00 AM</td>
+                                    <td><span class="punto" id="puntoEstado"></span> <select class="select-estado" id="estadoEntrada"><option value="verde">Presente</option><option value="rojo">Ausente</option></select></td>
+                                    <td>2026-10-13</td><td>1</td>
+                                    <td><button type="button" title="Configurar"><i class="fa-solid fa-gear"></i></button> <button type="button" title="Renovar"><i class="fa-solid fa-rotate"></i></button></td>
+                                </tr></tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <aside class="tarjetas-laterales">
+                        <article class="tarjeta-info"><div><p class="titulo-tarjeta">GANANCIAS DEL DÍA</p><p class="valor-tarjeta">S/ 1,285.50</p></div><i class="fa-solid fa-money-bill-wave icono-tarjeta"></i></article>
+                        <article class="tarjeta-info"><div><p class="titulo-tarjeta">CLIENTES ACTIVOS</p><p class="valor-tarjeta">248</p></div><i class="fa-solid fa-users icono-tarjeta"></i></article>
+                        <article class="tarjeta-info"><div><p class="titulo-tarjeta">CLIENTES POR VENCER</p><p class="valor-tarjeta">12</p></div><i class="fa-solid fa-clock icono-tarjeta"></i></article>
+                        <ui:fragment rendered="#{sessionScope.rol eq 'Administrador' or sessionScope.rol eq 'ADMIN'}">
+                            <h:link outcome="/ListaPersonal.xhtml" styleClass="tarjeta-info tarjeta-link" title="Ir al módulo de Personal">
+                                <div><p class="titulo-tarjeta">PERSONAL ACTIVO</p><p class="valor-tarjeta">#{dashboardBean.personalActivo}</p><p class="detalle-tarjeta">#{dashboardBean.personalConAcceso} con acceso al sistema</p></div>
+                                <i class="fa-solid fa-id-badge icono-tarjeta"></i>
+                            </h:link>
+                        </ui:fragment>
+                    </aside>
+                </div>
+                <section class="tarjetas-inferiores">
+                    <article class="tarjeta-inferior"><i class="fa-solid fa-coins"></i><div><p class="titulo-inferior">TASAS DE CAMBIO DEL DÍA</p><p><strong>USD Compra:</strong> S/ 3.42</p><p><strong>USD Venta:</strong> S/ 3.45</p></div></article>
+                    <article class="tarjeta-inferior"><i class="fa-solid fa-chart-column"></i><div><p class="titulo-inferior">ENTRADAS POR USUARIOS</p><p><strong>35 entradas</strong> registradas</p></div></article>
+                    <article class="tarjeta-inferior"><i class="fa-solid fa-cake-candles"></i><div><p class="titulo-inferior">CUMPLEAÑOS DEL DÍA</p><p><strong>3 socios</strong> cumplen años hoy</p></div></article>
+                </section>
+            </div>
+        </main>
+    </ui:define>
+    <ui:define name="scripts">
+        <script type="text/javascript">
+            (function () {
+                var fecha = document.getElementById("fechaActual");
+
+                if (fecha) {
+                    fecha.textContent =
+                        new Date().toLocaleDateString("en-CA");
+                }
+
+                var estado =
+                    document.getElementById("estadoEntrada");
+
+                var punto =
+                    document.getElementById("puntoEstado");
+            
+                if (estado) {
+                    if (punto) {
+                        estado.addEventListener("change", function () {
+                            if (estado.value === "verde") {
+                                punto.style.background = "#16a34a";
+                            } else {
+                                punto.style.background = "#dc2626";
+                            }
+                        });
+                    }
+                }
+            }());
+        </script>
+    </ui:define>
+</ui:composition>

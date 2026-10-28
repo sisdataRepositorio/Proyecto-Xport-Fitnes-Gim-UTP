@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="ventas" />
+    <ui:param name="menuSubmenu" value="" />
+    <ui:define name="title">Ventas | Xport Fitness Gym</ui:define>
+    <ui:define name="styles"><style type="text/css"><![CDATA[
+        .placeholder-main{flex:1;min-width:0;padding:28px;background:#eef2f8}
+        .placeholder-card{max-width:900px;padding:28px;background:white;border:1px solid #dce5f1;border-radius:14px;box-shadow:0 4px 15px rgba(16,38,83,.07)}
+        .placeholder-icon{display:flex;align-items:center;justify-content:center;width:52px;height:52px;margin-bottom:16px;border-radius:12px;background:#eaf0ff;color:#2864f0;font-size:23px}
+        .placeholder-card h1{margin:0 0 10px;color:#102653;font-size:24px}
+        .placeholder-card p{color:#75829a;font-size:13px;line-height:1.7}
+        .placeholder-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+        .placeholder-actions a{display:inline-flex;align-items:center;gap:8px;padding:11px 15px;border-radius:8px;background:#2864f0;color:white;text-decoration:none;font-weight:700;font-size:12px}
+        @media(max-width:650px){.placeholder-main{padding:12px}.placeholder-card{padding:18px}}
+    ]]></style></ui:define>
+    <ui:define name="content">
+        <main class="placeholder-main">
+            <section class="placeholder-card">
+                <div class="placeholder-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <p class="gastos-eyebrow">XPORT FITNESS GYM</p>
+                <h1>Ventas</h1>
+                <p>El historial de ventas definitivo requiere conectar el Punto de Venta con la base de datos del gimnasio. Las ventas realizadas en el Punto de Venta de demostración se almacenan localmente en el navegador.</p>
+                <div class="placeholder-actions"><h:link outcome="/PuntoVenta.xhtml"><i class="fa-solid fa-cash-register"></i> Abrir Punto de Venta</h:link></div>
+            </section>
+        </main>
+    </ui:define>
+</ui:composition>

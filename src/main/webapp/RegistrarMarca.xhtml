@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    xmlns:app="jakarta.faces.composite/components" template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="nuevaMarca" />
+    <ui:param name="menuSubmenu" value="catalogo" />
+    <ui:define name="title">Registrar Marca | Xport Fitness Gym</ui:define>
+    <ui:define name="styles">
+
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/gastos.css" />
+
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/productos-dashboard.css" />
+
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/catalogo.css" />
+
+        <style type="text/css">
+            /* Tarjeta principal */
+            .registro-marca-card {
+                margin-bottom: 24px;
+                padding: 24px;
+            }
+
+            /* Formulario */
+            .registro-marca-card .registro-marca-form {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 24px;
+                width: 100%;
+                margin-top: 22px;
+            }
+
+            /* Distribución de los campos */
+            .registro-marca-card .registro-marca-campos {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 22px 24px;
+                width: 100%;
+            }
+
+            /* Cada campo debe organizarse verticalmente */
+            .registro-marca-card .registro-marca-campo {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 8px;
+                width: 100%;
+                min-width: 0;
+                color: #102653;
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+            .registro-marca-card .registro-marca-campo label {
+                display: block !important;
+                margin: 0;
+                color: #102653;
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 1.5;
+            }
+
+            .registro-marca-card .registro-marca-campo label i {
+                margin-right: 6px;
+                color: #2864F0;
+            }
+
+            /* Cajas de texto */
+            .registro-marca-card .registro-marca-campo input,
+            .registro-marca-card .registro-marca-campo textarea {
+                display: block !important;
+                width: 100% !important;
+                max-width: none !important;
+                min-width: 0;
+                min-height: 44px;
+                margin: 0;
+                padding: 11px 13px;
+                border: 1px solid #D6E1F2;
+                border-radius: 8px;
+                background: #FFFFFF;
+                color: #102653;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 1.5;
+                box-sizing: border-box;
+                box-shadow: none;
+            }
+
+            .registro-marca-card .registro-marca-campo textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+            .registro-marca-card .registro-marca-campo input:focus,
+            .registro-marca-card .registro-marca-campo textarea:focus {
+                outline: none;
+                border-color: #2864F0;
+                box-shadow: 0 0 0 3px rgba(40, 100, 240, 0.12);
+            }
+
+            .registro-marca-card .registro-marca-campo input::placeholder,
+            .registro-marca-card .registro-marca-campo textarea::placeholder {
+                color: #94A3B8;
+                opacity: 1;
+            }
+
+            /* Descripción a lo ancho de la tarjeta */
+            .registro-marca-card .registro-marca-campo-completo {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+            .registro-marca-ayuda {
+                display: block;
+                color: #75829A;
+                font-size: 11px;
+                font-weight: 400;
+                line-height: 1.6;
+            }
+
+            /* Mensajes */
+            .registro-marca-aviso {
+                display: none;
+                margin-top: 18px;
+                padding: 13px 15px;
+                border: 1px solid #FDE2B8;
+                border-radius: 8px;
+                background: #FFF5E5;
+                color: #946200;
+                font-size: 12px;
+                line-height: 1.6;
+            }
+
+            .registro-marca-aviso.visible {
+                display: block;
+            }
+
+            .registro-marca-aviso.exito {
+                border-color: #A7F3D0;
+                background: #E9FBF2;
+                color: #168653;
+            }
+
+            /* Botones */
+            .registro-marca-card .registro-marca-botones {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 12px;
+                width: 100%;
+                padding-top: 20px;
+                border-top: 1px solid #DFE6F0;
+            }
+
+            .registro-marca-card .registro-marca-botones button,
+            .registro-marca-card .registro-marca-botones a {
+                display: inline-flex !important;
+                flex-direction: row !important;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                min-width: 145px;
+                min-height: 42px;
+                margin: 0;
+                padding: 11px 18px;
+                border: 1px solid transparent;
+                border-radius: 8px;
+                font-family: inherit;
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 1.4;
+                text-decoration: none;
+                white-space: nowrap;
+                cursor: pointer;
+                box-sizing: border-box;
+            }
+
+            .registro-marca-card .btn-registrar-marca {
+                background: #2864F0;
+                color: #FFFFFF;
+                box-shadow: 0 3px 8px rgba(40, 100, 240, 0.18);
+            }
+
+            .registro-marca-card .btn-registrar-marca:hover {
+                background: #174CC5;
+            }
+
+            .registro-marca-card .btn-limpiar-marca {
+                background: #EDF2FA;
+                border-color: #DCE5F1;
+                color: #102653;
+            }
+
+            .registro-marca-card .btn-limpiar-marca:hover {
+                background: #DCE7F8;
+            }
+
+            .registro-marca-card .btn-volver-marcas {
+                background: #FFFFFF;
+                border-color: #DCE5F1;
+                color: #2864F0;
+            }
+
+            .registro-marca-card .btn-volver-marcas:hover {
+                background: #EAF0FF;
+            }
+
+            .registro-marca-card .btn-registrar-marca:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            /* Información complementaria */
+            .registro-marca-pasos {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 18px;
+                margin-top: 22px;
+            }
+
+            .registro-marca-paso {
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 18px;
+                border: 1px solid #DFE6F0;
+                border-radius: 12px;
+                background: #FFFFFF;
+            }
+
+            .registro-marca-paso > i {
+                flex-shrink: 0;
+                color: #2864F0;
+                font-size: 20px;
+            }
+
+            .registro-marca-paso strong {
+                display: block;
+                margin-bottom: 6px;
+                color: #102653;
+                font-size: 12px;
+            }
+
+            .registro-marca-paso p {
+                margin: 0;
+                color: #75829A;
+                font-size: 11px;
+                line-height: 1.6;
+            }
+
+            .registro-marca-nota {
+                margin-top: 18px;
+                color: #75829A;
+                font-size: 11px;
+                line-height: 1.6;
+            }
+
+            .registro-marca-nota i {
+                margin-right: 5px;
+                color: #2864F0;
+            }
+
+            /* Adaptación a pantallas pequeñas */
+            @media (max-width: 900px) {
+                .registro-marca-pasos {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 700px) {
+                .registro-marca-card {
+                    padding: 16px;
+                }
+
+                .registro-marca-card .registro-marca-campos {
+                    grid-template-columns: minmax(0, 1fr) !important;
+                }
+
+                .registro-marca-card .registro-marca-campo-completo {
+                    grid-column: auto;
+                }
+
+                .registro-marca-card .registro-marca-botones {
+                    flex-direction: column !important;
+                    align-items: stretch;
+                }
+
+                .registro-marca-card .registro-marca-botones button,
+                .registro-marca-card .registro-marca-botones a {
+                    width: 100%;
+                    min-width: 0;
+                }
+            }
+        </style>
+
+    </ui:define>
+    <ui:define name="content">
+<!-- CONTENIDO PRINCIPAL -->
+    <main class="gastos-main catalogo-main">
+
+        <!-- CABECERA -->
+        <header class="gastos-header">
+            <div>
+                <p class="gastos-eyebrow">CONTROL DE INVENTARIO</p>
+
+                <h1 id="tituloPagina">Registrar Marca</h1>
+
+                <p class="gastos-subtitle">
+                    Registra una marca para identificar los productos
+                    del catálogo del gimnasio.
+                </p>
+            </div>
+
+            <a class="periodo productos-nuevo"
+               href="#{request.contextPath}/Marcas.xhtml">
+                <i class="fa-solid fa-list"></i>
+                <span>Ver marcas</span>
+            </a>
+        </header>
+
+        <!-- FORMULARIO -->
+        <section class="contenido-card registro-marca-card"
+                 id="formulario">
+
+            <div class="card-heading">
+                <div>
+                    <h2>
+                        <i class="fa-solid fa-tag"></i>
+                        Datos de la marca
+                    </h2>
+
+                    <p>
+                        Los campos marcados con * son obligatorios.
+                    </p>
+                </div>
+
+                <i class="fa-solid fa-copyright heading-icon"></i>
+            </div>
+
+            <div id="avisoMarca"
+                 class="registro-marca-aviso"
+                 role="status"
+                 aria-live="polite"></div>
+
+            <form id="formRegistrarMarca"
+                  class="registro-marca-form">
+
+                <div class="registro-marca-campos">
+
+                    <!-- NOMBRE -->
+                    <div class="registro-marca-campo">
+                        <label for="nombreMarca">
+                            <i class="fa-solid fa-tag"></i>
+                            Nombre de la marca *
+                        </label>
+
+                        <input type="text"
+                               id="nombreMarca"
+                               name="nombre"
+                               maxlength="100"
+                               required="required"
+                               autocomplete="off"
+                               placeholder="Ej. Nike" />
+                        
+                        <span class="registro-marca-ayuda">
+                            Introduce el nombre con el que se identifica la marca.
+                        </span>
+                    </div>
+
+                    <!-- PAÍS -->
+                    <div class="registro-marca-campo">
+                        <label for="paisMarca">
+                            <i class="fa-solid fa-globe"></i>
+                            País de origen
+                        </label>
+
+                        <input type="text"
+                               id="paisMarca"
+                               name="pais"
+                               maxlength="100"
+                               autocomplete="off"
+                               placeholder="Ej. Perú" />
+
+                        <span class="registro-marca-ayuda">
+                            Campo opcional. País de origen de la marca.
+                        </span>
+                    </div>
+
+                    <!-- DESCRIPCIÓN -->
+                    <div class="registro-marca-campo registro-marca-campo-completo">
+                        <label for="descripcionMarca">
+                            <i class="fa-solid fa-align-left"></i>
+                            Descripción
+                        </label>
+
+                        <textarea id="descripcionMarca"
+                                  name="descripcion"
+                                  maxlength="500"
+                                  rows="4"
+                                  placeholder="Describe brevemente la marca y sus productos."></textarea>
+
+                        <span class="registro-marca-ayuda">
+                            Campo opcional. Máximo 500 caracteres.
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- BOTONES -->
+                <div class="registro-marca-botones">
+
+                    <button type="submit"
+                            class="btn-registrar-marca"
+                            id="btnGuardarMarca">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span id="textoGuardar">Registrar marca</span>
+                    </button>
+
+                    <button type="button"
+                            class="btn-limpiar-marca"
+                            id="btnLimpiarMarca">
+                        <i class="fa-solid fa-eraser"></i>
+                        Limpiar
+                    </button>
+
+                    <a class="btn-volver-marcas"
+                       href="#{request.contextPath}/Marcas.xhtml">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Volver a marcas
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- INFORMACIÓN COMPLEMENTARIA -->
+        <section class="registro-marca-pasos">
+
+            <article class="registro-marca-paso">
+                <i class="fa-solid fa-tag"></i>
+
+                <div>
+                    <strong>Nombre identificable</strong>
+
+                    <p>
+                        Registra un nombre claro para encontrar
+                        fácilmente la marca en el catálogo.
+                    </p>
+                </div>
+            </article>
+
+            <article class="registro-marca-paso">
+                <i class="fa-solid fa-globe"></i>
+
+                <div>
+                    <strong>País de origen</strong>
+
+                    <p>
+                        Puedes indicar el país de procedencia
+                        para complementar la información.
+                    </p>
+                </div>
+            </article>
+
+            <article class="registro-marca-paso">
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <div>
+                    <strong>Organización del catálogo</strong>
+
+                    <p>
+                        Las marcas ayudan a identificar y organizar
+                        los productos del gimnasio.
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+        <p class="registro-marca-nota">
+            <i class="fa-solid fa-circle-info"></i>
+            Modo de demostración: las marcas se guardan en el navegador.
+            Todavía no se registran en SQL Server.
+        </p>
+
+    </main>
+    </ui:define>
+    <ui:define name="scripts">
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+    "use strict";
+
+    const contexto = '#{request.contextPath}';
+    const claveMarcas = "marcasCatalogo";
+
+    const formulario = document.getElementById("formRegistrarMarca");
+    const nombre = document.getElementById("nombreMarca");
+    const pais = document.getElementById("paisMarca");
+    const descripcion = document.getElementById("descripcionMarca");
+
+    const aviso = document.getElementById("avisoMarca");
+    const botonGuardar = document.getElementById("btnGuardarMarca");
+    const textoGuardar = document.getElementById("textoGuardar");
+    const botonLimpiar = document.getElementById("btnLimpiarMarca");
+    const tituloPagina = document.getElementById("tituloPagina");
+
+    // Comprobar que existan los elementos del formulario.
+    if (!formulario || !nombre || !pais || !descripcion
+            || !aviso || !botonGuardar || !textoGuardar
+            || !botonLimpiar || !tituloPagina) {
+        console.error(
+            "No se encontraron todos los elementos del formulario de marcas."
+        );
+        return;
+    }
+
+    const parametros = new URLSearchParams(window.location.search);
+    const idEditar = parametros.get("id");
+
+    const marcasIniciales = [
+        {
+            id: "marca-1",
+            nombre: "Nike",
+            descripcion: "Marca de ropa y accesorios deportivos",
+            pais: "Estados Unidos",
+            activa: true
+        },
+        {
+            id: "marca-2",
+            nombre: "Adidas",
+            descripcion: "Calzado y artículos deportivos",
+            pais: "Alemania",
+            activa: true
+        },
+        {
+            id: "marca-3",
+            nombre: "Puma",
+            descripcion: "Ropa y calzado deportivo",
+            pais: "Alemania",
+            activa: true
+        },
+        {
+            id: "marca-4",
+            nombre: "Reebok",
+            descripcion: "Productos de entrenamiento",
+            pais: "Reino Unido",
+            activa: true
+        }
+    ];
+
+    function obtenerMarcas() {
+        const datos = localStorage.getItem(claveMarcas);
+
+        if (datos === null) {
+            guardarMarcas(marcasIniciales);
+
+            return marcasIniciales.map(function (marca) {
+                return Object.assign({}, marca);
+            });
+        }
+
+        try {
+            const marcas = JSON.parse(datos);
+            return Array.isArray(marcas) ? marcas : [];
+        } catch (error) {
+            guardarMarcas(marcasIniciales);
+
+            return marcasIniciales.map(function (marca) {
+                return Object.assign({}, marca);
+            });
+        }
+    }
+
+    function guardarMarcas(marcas) {
+        localStorage.setItem(claveMarcas, JSON.stringify(marcas));
+    }
+
+    function mostrarAviso(texto, esExito) {
+        aviso.textContent = texto;
+        aviso.classList.add("visible");
+        aviso.classList.toggle("exito", Boolean(esExito));
+    }
+
+    function ocultarAviso() {
+        aviso.textContent = "";
+        aviso.classList.remove("visible");
+        aviso.classList.remove("exito");
+    }
+
+    let marcaExistente = null;
+
+    function limpiarFormulario() {
+        formulario.reset();
+        ocultarAviso();
+
+        if (marcaExistente) {
+            nombre.value = marcaExistente.nombre || "";
+            pais.value = marcaExistente.pais || "";
+            descripcion.value = marcaExistente.descripcion || "";
+        } else {
+            nombre.value = "";
+            pais.value = "";
+            descripcion.value = "";
+        }
+
+        nombre.focus();
+    }
+
+    // Cargar las marcas existentes.
+    const marcas = obtenerMarcas();
+
+    // Si existe un ID en la URL, buscar la marca que se editará.
+    if (idEditar !== null) {
+        marcaExistente = marcas.find(function (marca) {
+            return String(marca.id) === String(idEditar);
+        });
+
+        if (marcaExistente) {
+            tituloPagina.textContent = "Editar Marca";
+            textoGuardar.textContent = "Guardar cambios";
+
+            nombre.value = marcaExistente.nombre || "";
+            pais.value = marcaExistente.pais || "";
+            descripcion.value = marcaExistente.descripcion || "";
+        } else {
+            mostrarAviso(
+                "No se encontró la marca que deseas editar. " +
+                "Regresa al listado e inténtalo nuevamente.",
+                false
+            );
+
+            botonGuardar.disabled = true;
+        }
+    }
+
+    // Registrar una marca nueva o actualizar una existente.
+    formulario.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        ocultarAviso();
+
+        // Validar que la marca que se pretende editar exista.
+        if (idEditar !== null) {
+            if (!marcaExistente) {
+                mostrarAviso(
+                    "No se puede editar una marca que no existe.",
+                    false
+                );
+                return;
+            }
+        }
+
+        const nombreValor = nombre.value.trim();
+        const paisValor = pais.value.trim();
+        const descripcionValor = descripcion.value.trim();
+
+        if (!nombreValor) {
+            mostrarAviso(
+                "Debes ingresar el nombre de la marca.",
+                false
+            );
+
+            nombre.focus();
+            return;
+        }
+
+        const listaMarcas = obtenerMarcas();
+
+        // Verificar si ya existe otra marca con el mismo nombre.
+        const nombreDuplicado = listaMarcas.some(function (marca) {
+            const mismoNombre =
+                String(marca.nombre || "")
+                    .trim()
+                    .toLocaleLowerCase("es")
+                === nombreValor.toLocaleLowerCase("es");
+
+            const esOtraMarca =
+                String(marca.id) !== String(idEditar);
+
+            if (mismoNombre) {
+                if (esOtraMarca) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        if (nombreDuplicado) {
+            mostrarAviso(
+                "Ya existe una marca registrada con ese nombre.",
+                false
+            );
+
+            nombre.focus();
+            return;
+        }
+
+        // Actualizar una marca existente.
+        if (idEditar !== null) {
+            const indice = listaMarcas.findIndex(function (marca) {
+                return String(marca.id) === String(idEditar);
+            });
+
+            if (indice === -1) {
+                mostrarAviso(
+                    "No se encontró la marca que deseas actualizar.",
+                    false
+                );
+                return;
+            }
+
+            listaMarcas[indice] = Object.assign(
+                {},
+                listaMarcas[indice],
+                {
+                    nombre: nombreValor,
+                    pais: paisValor,
+                    descripcion: descripcionValor
+                }
+            );
+
+            guardarMarcas(listaMarcas);
+
+            window.location.href =
+                contexto + "/Marcas.xhtml?actualizado=1";
+
+        } else {
+            // Registrar una marca nueva.
+            const nuevaMarca = {
+                id: "marca-" + Date.now(),
+                nombre: nombreValor,
+                pais: paisValor,
+                descripcion: descripcionValor,
+                activa: true
+            };
+
+            listaMarcas.push(nuevaMarca);
+            guardarMarcas(listaMarcas);
+
+            window.location.href =
+                contexto + "/Marcas.xhtml?guardado=1";
+        }
+    });
+
+    // Limpiar los campos o restaurar los valores de la marca editada.
+    botonLimpiar.addEventListener("click", function () {
+        limpiarFormulario();
+    });
+});
+</script>
+    </ui:define>
+</ui:composition>

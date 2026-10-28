@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core"
+    template="/WEB-INF/templates/principal.xhtml">
+    <ui:param name="menuOpcion" value="inicio" />
+    <ui:param name="menuSubmenu" value="" />
+    <ui:define name="title">Validación de acceso | Xport Fitness Gym</ui:define>
+    <ui:define name="styles">
+        <style type="text/css"><![CDATA[
+            .empresa-main{flex:1;min-width:0;padding:28px;background:#eef2f8}
+            .empresa-card{max-width:1000px;margin:0 auto;padding:28px;background:#fff;border:1px solid #dce5f1;border-radius:14px;box-shadow:0 4px 15px rgba(16,38,83,.07)}
+            .empresa-card h1{margin:0 0 8px;color:#102653;font-size:24px}
+            .empresa-sub{margin:0 0 22px;color:#75829a;font-size:13px}
+            .empresa-status{padding:14px 16px;margin-bottom:18px;border-radius:8px;background:#e7f8ef;color:#166534}
+            .empresa-status.denegado{background:#fff0f0;color:#991b1b}
+            .empresa-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:24px}
+            .empresa-meta div{padding:14px;border:1px solid #dce5f1;border-radius:8px;background:#f9fbff}
+            .empresa-meta small{display:block;margin-bottom:6px;color:#75829a;font-size:10px;text-transform:uppercase}
+            .empresa-meta strong{color:#102653;font-size:14px}
+            .empresa-table{width:100%;border-collapse:collapse;font-size:12px}
+            .empresa-table th{padding:11px;text-align:left;color:#fff;background:#102653}
+            .empresa-table td{padding:12px;border-bottom:1px solid #e3eaf4;color:#34435e}
+            .empresa-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+            .empresa-actions a{display:inline-flex;padding:10px 15px;border-radius:7px;background:#2864f0;color:white;text-decoration:none;font-weight:700;font-size:12px}
+            @media(max-width:650px){.empresa-main{padding:12px}.empresa-card{padding:18px}.empresa-meta{grid-template-columns:1fr}}
+        ]]></style>
+    </ui:define>
+    <ui:define name="content">
+        <main class="empresa-main">
+            <section class="empresa-card">
+                <p class="gastos-eyebrow">SEGURIDAD DEL SISTEMA</p>
+                <h1>Validación de acceso</h1>
+                <p class="empresa-sub">Información de la sesión autenticada y empresas disponibles en el sistema.</p>
+                <div class="empresa-meta">
+                    <div><small>Usuario</small><strong><h:outputText value="#{empresaBean.usuario}" /></strong></div>
+                    <div><small>Rol</small><strong><h:outputText value="#{empresaBean.rol}" /></strong></div>
+                </div>
+                <h:panelGroup layout="block" styleClass="empresa-status" rendered="#{empresaBean.accesoPermitido}">
+                    <strong>Acceso permitido.</strong> Bienvenido al sistema de gestión.
+                </h:panelGroup>
+                <h:panelGroup layout="block" styleClass="empresa-status denegado" rendered="#{not empresaBean.accesoPermitido}">
+                    <strong>Acceso no autorizado.</strong> El rol de la sesión no tiene acceso habilitado a este módulo.
+                </h:panelGroup>
+                <h:panelGroup layout="block" rendered="#{not empty empresaBean.empresas}">
+                    <h2 style="margin:24px 0 12px;color:#102653;font-size:16px">Empresas configuradas</h2>
+                    <div class="tabla-scroll">
+                        <h:dataTable value="#{empresaBean.empresas}" var="e" styleClass="empresa-table">
+                            <h:column><f:facet name="header">Código</f:facet><h:outputText value="#{e.codigo_Emp}" /></h:column>
+                            <h:column><f:facet name="header">Razón social</f:facet><h:outputText value="#{e.razonSocial}" /></h:column>
+                            <h:column><f:facet name="header">Razón comercial</f:facet><h:outputText value="#{e.razonComercial}" /></h:column>
+                        </h:dataTable>
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup layout="block" rendered="#{empty empresaBean.empresas}">
+                    <p class="empresa-sub">No hay empresas disponibles o no se pudo consultar la base de datos.</p>
+                </h:panelGroup>
+                <div class="empresa-actions"><h:link outcome="/dashboard.xhtml">Ir al inicio</h:link><h:form><h:commandLink action="#{loginBean.cerrarSesion}">Cerrar sesión</h:commandLink></h:form></div>
+            </section>
+        </main>
+    </ui:define>
+</ui:composition>

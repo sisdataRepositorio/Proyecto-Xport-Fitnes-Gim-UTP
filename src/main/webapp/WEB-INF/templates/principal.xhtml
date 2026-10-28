@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:app="jakarta.faces.composite/components">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><ui:insert name="title">Xport Fitness Gym</ui:insert></title>
+    <link rel="stylesheet" href="#{request.contextPath}/css/diseingreso.css" />
+    <link rel="stylesheet" href="#{request.contextPath}/css/menu.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <ui:insert name="styles" />
+</h:head>
+<h:body>
+    <div class="dashboard-container">
+        <app:menuLateral opcion="#{menuOpcion}" submenu="#{menuSubmenu}" />
+        <ui:insert name="content" />
+    </div>
+    <script src="#{request.contextPath}/js/menu.js"></script>
+    <script src="#{request.contextPath}/js/diseingreso.js"></script>
+    <ui:insert name="scripts" />
+</h:body>
+</html>
