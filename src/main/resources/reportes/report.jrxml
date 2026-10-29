@@ -1,0 +1,205 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="Cliente" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="55b662c0-b6b9-4818-ac97-7249d626e187">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<query language="SQL"><![CDATA[SELECT * FROM dbo.Cliente ORDER BY RazonSocial ASC]]></query>
+	<field name="Cliente_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Cliente_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cliente_ID"/>
+	</field>
+	<field name="RazonSocial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RazonSocial"/>
+		<property name="com.jaspersoft.studio.field.label" value="RazonSocial"/>
+	</field>
+	<field name="Direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="Direccion"/>
+	</field>
+	<field name="Telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="Telefono"/>
+	</field>
+	<field name="Estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Estado"/>
+		<property name="com.jaspersoft.studio.field.label" value="Estado"/>
+	</field>
+	<field name="Telefono2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Telefono2"/>
+		<property name="com.jaspersoft.studio.field.label" value="Telefono2"/>
+	</field>
+	<field name="Correo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Correo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Correo"/>
+	</field>
+	<field name="Sexo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Sexo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sexo"/>
+	</field>
+	<field name="RucDNI" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RucDNI"/>
+		<property name="com.jaspersoft.studio.field.label" value="RucDNI"/>
+	</field>
+	<field name="TipoId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TipoId"/>
+		<property name="com.jaspersoft.studio.field.label" value="TipoId"/>
+	</field>
+	<field name="Foto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Foto"/>
+		<property name="com.jaspersoft.studio.field.label" value="Foto"/>
+	</field>
+	<field name="Contacto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Contacto"/>
+		<property name="com.jaspersoft.studio.field.label" value="Contacto"/>
+	</field>
+	<field name="TelefonoCont" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TelefonoCont"/>
+		<property name="com.jaspersoft.studio.field.label" value="TelefonoCont"/>
+	</field>
+	<field name="HuellaDactilar" class="java.sql.Blob">
+		<property name="com.jaspersoft.studio.field.name" value="HuellaDactilar"/>
+		<property name="com.jaspersoft.studio.field.label" value="HuellaDactilar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cliente"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="110" splitType="Stretch">
+		<element kind="staticText" uuid="c857bd6f-5a2d-4bec-b29b-9aa7cb288a43" x="40" y="10" width="390" height="80" fontSize="38.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Informe de Cliente]]></text>
+		</element>
+		<element kind="image" uuid="c69e9d75-f281-4cd2-b204-243d1d9ad3bf" x="430" y="10" width="145" height="100">
+			<expression><![CDATA["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQkrQ8czOAMuhPB4noIqIZtxmTNB3Y4dYWHjGRqBW9ACSByexD-zjPa7w&s=10"]]></expression>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	
+        <columnHeader height="25" splitType="Stretch">
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111101"
+                     x="0" y="0" width="60" height="22" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Cliente_ID]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111102"
+                     x="60" y="0" width="51" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[RazonSocial]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111103"
+                     x="111" y="0" width="50" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Direccion]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111104"
+                     x="161" y="0" width="50" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Telefono]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111105"
+                     x="211" y="0" width="49" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Estado]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111106"
+                     x="260" y="0" width="60" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Correo]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111107"
+                     x="320" y="0" width="50" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[RucDNI]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111108"
+                     x="370" y="0" width="60" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Sexo]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111109"
+                     x="430" y="0" width="50" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Contacto]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+            <element kind="staticText" uuid="a1111111-1111-4111-8111-111111111110"
+                     x="480" y="0" width="75" height="22" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                <text><![CDATA[Telefono Contacto]]></text>
+                <box><pen lineWidth="0.5"/></box>
+            </element>
+
+        </columnHeader>
+	
+        <detail>
+            <band height="25" splitType="Stretch">
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111101"
+                         x="0" y="0" width="60" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Cliente_ID}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111102"
+                         x="60" y="0" width="51" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{RazonSocial}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111103"
+                         x="111" y="0" width="50" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Direccion}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111104"
+                         x="161" y="0" width="50" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Telefono}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111105"
+                         x="211" y="0" width="49" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Estado}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111106"
+                         x="260" y="0" width="60" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Correo}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111107"
+                         x="320" y="0" width="50" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{RucDNI}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111108"
+                         x="370" y="0" width="60" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Sexo}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111109"
+                         x="430" y="0" width="50" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{Contacto}]]></expression>
+                </element>
+
+                <element kind="textField" uuid="b1111111-1111-4111-8111-111111111110"
+                         x="480" y="0" width="75" height="23" fontSize="7.0" hTextAlign="Center" vTextAlign="Middle">
+                    <expression><![CDATA[$F{TelefonoCont}]]></expression>
+                </element>
+
+            </band>
+        </detail>
+
+	
+        <pageFooter height="22" splitType="Stretch">
+            <element kind="textField"
+                     uuid="c1111111-1111-4111-8111-111111111101"
+                     x="430" y="2" width="125" height="18"
+                     fontSize="8.0" hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA["Página " + $V{PAGE_NUMBER}]]></expression>
+            </element>
+        </pageFooter>
+
+	<summary height="85" splitType="Stretch"/>
+</jasperReport>

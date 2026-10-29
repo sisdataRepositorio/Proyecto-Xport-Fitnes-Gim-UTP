@@ -14,13 +14,33 @@
                         <div class="clientes-icono"><i class="fa-solid fa-users"></i></div>
                         <div><h1>Ver Socios</h1><p>Listado de clientes registrados en Xport Fitness Gym</p></div>
                     </div>
+                    <div class="clientes-acciones">
+
+                        <!-- Botón para generar el reporte PDF -->
+                        <a href="#{request.contextPath}/reportes/clientes.pdf"
+                           target="_blank"
+                           rel="noopener"
+                           class="btn-reporte-pdf">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            Generar reporte PDF
+                        </a>
+
+                        <!-- Botón existente para registrar un socio -->
+                        <h:form id="nuevoSocioForm" prependId="false">
+                            <h:commandLink action="#{clienteBean.nuevo}"
+                                           styleClass="btn-nuevo-socio">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Registrar Socio
+                            </h:commandLink>
+                        </h:form>
+                    </div>
+                </header>
                     <h:form id="nuevoSocioForm" prependId="false">
                         <h:commandLink action="#{clienteBean.nuevo}" styleClass="btn-nuevo-socio">
                             <i class="fa-solid fa-user-plus"></i> Registrar Socio
                         </h:commandLink>
                     </h:form>
                 </header>
-
                 <h:messages globalOnly="true" layout="list" styleClass="mensaje-lista" />
                 <h:panelGroup layout="block" rendered="#{not empty flash.mensajeSocios}" styleClass="mensaje-ok">
                     <i class="fa-solid fa-circle-check"></i>

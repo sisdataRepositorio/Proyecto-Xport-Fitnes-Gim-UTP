@@ -43,6 +43,35 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>12.2.0.jre11</version>
         </dependency>
+        
+        <!-- Motor de JasperReports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>7.0.8</version>
+        </dependency>
+
+        <!-- Exportador PDF -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-pdf</artifactId>
+            <version>7.0.8</version>
+        </dependency>
+
+        <!-- Compilador Java de JasperReports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-jdt</artifactId>
+            <version>7.0.8</version>
+        </dependency>
+
+        <!-- Compilador Eclipse JDT -->
+        <dependency>
+            <groupId>org.eclipse.jdt</groupId>
+            <artifactId>ecj</artifactId>
+            <version>3.37.0</version>
+        </dependency>
+        
     </dependencies>
     <build>
         <finalName>AplicacionWebGimnasio</finalName>
