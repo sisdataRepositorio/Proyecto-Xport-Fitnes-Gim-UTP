@@ -5,214 +5,23 @@
     <ui:param name="menuOpcion" value="nuevaCategoria" />
     <ui:param name="menuSubmenu" value="catalogo" />
     <ui:define name="title">Registrar Categoría | Xport Fitness Gym</ui:define>
+    
     <ui:define name="styles">
-<link rel="stylesheet"
-          href="#{request.contextPath}/css/gastos.css" />
 
-    <link rel="stylesheet"
-          href="#{request.contextPath}/css/productos-dashboard.css" />
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/gastos.css" />
 
-    <link rel="stylesheet"
-          href="#{request.contextPath}/css/catalogo.css" />
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/productos-dashboard.css" />
 
-    
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/catalogo.css" />
 
-    
+        <link rel="stylesheet"
+              href="#{request.contextPath}/css/registrar-categoria.css" />
 
-    <style><![CDATA[
-        .registro-categoria-card {
-            margin-bottom: 24px;
-        }
-
-        .registro-categoria-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .registro-categoria-campos {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-            gap: 20px;
-        }
-
-        .registro-categoria-campo {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 0;
-            color: #10234D;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .registro-categoria-campo label {
-            line-height: 1.5;
-        }
-
-        .registro-categoria-campo label i {
-            margin-right: 5px;
-            color: #2864F0;
-        }
-
-        .registro-categoria-campo input,
-        .registro-categoria-campo textarea {
-            width: 100%;
-            min-height: 44px;
-            padding: 11px 13px;
-            border: 1px solid #D2DCEC;
-            border-radius: 8px;
-            background: #FFFFFF;
-            color: #10234D;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            box-sizing: border-box;
-        }
-
-        .registro-categoria-campo textarea {
-            min-height: 110px;
-            resize: vertical;
-            line-height: 1.6;
-        }
-
-        .registro-categoria-campo input:focus,
-        .registro-categoria-campo textarea:focus {
-            outline: none;
-            border-color: #2864F0;
-            box-shadow: 0 0 0 3px rgba(40, 100, 240, 0.10);
-        }
-
-        .registro-categoria-ayuda {
-            color: #75829A;
-            font-size: 11px;
-            font-weight: 400;
-            line-height: 1.5;
-        }
-
-        .registro-categoria-botones {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            padding-top: 20px;
-            border-top: 1px solid #DFE6F0;
-        }
-
-        .registro-categoria-botones button,
-        .registro-categoria-botones a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-height: 42px;
-            padding: 11px 18px;
-            border: none;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-            box-sizing: border-box;
-        }
-
-        .btn-registrar-categoria {
-            background: #18BD70;
-            color: #FFFFFF;
-        }
-
-        .btn-registrar-categoria:hover {
-            background: #11995A;
-        }
-
-        .btn-limpiar-categoria {
-            background: #2864F0;
-            color: #FFFFFF;
-        }
-
-        .btn-limpiar-categoria:hover {
-            background: #174CC5;
-        }
-
-        .btn-volver-categorias {
-            background: #EDF1F7;
-            color: #34435E;
-        }
-
-        .btn-volver-categorias:hover {
-            background: #DDE5F0;
-        }
-
-        .registro-categoria-aviso {
-            display: none;
-            padding: 13px 15px;
-            border-radius: 8px;
-            background: #FFF5E5;
-            color: #946200;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .registro-categoria-aviso.visible {
-            display: block;
-        }
-
-        .registro-categoria-pasos {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .registro-categoria-paso {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 18px;
-            border: 1px solid #DFE6F0;
-            border-radius: 12px;
-            background: #FFFFFF;
-        }
-
-        .registro-categoria-paso > i {
-            color: #2864F0;
-            font-size: 20px;
-        }
-
-        .registro-categoria-paso strong {
-            display: block;
-            margin-bottom: 6px;
-            color: #10234D;
-            font-size: 12px;
-        }
-
-        .registro-categoria-paso p {
-            margin: 0;
-            color: #75829A;
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 900px) {
-            .registro-categoria-pasos {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .registro-categoria-campos {
-                grid-template-columns: 1fr;
-            }
-
-            .registro-categoria-botones {
-                flex-direction: column;
-            }
-
-            .registro-categoria-botones button,
-            .registro-categoria-botones a {
-                width: 100%;
-            }
-        }
-    ]]></style>
     </ui:define>
+
     <ui:define name="content">
 <!-- CONTENIDO PRINCIPAL -->
     <main class="gastos-main catalogo-main">
@@ -233,8 +42,6 @@
                 <span>Ver categorías</span>
             </a>
         </header>
-
-       
 
         <!-- FORMULARIO DE REGISTRO -->
         <section class="contenido-card registro-categoria-card"

@@ -1,0 +1,233 @@
+
+/* =========================================
+   REGISTRAR CATEGORIA
+========================================= */
+
+.registro-categoria-card {
+    margin-bottom: 24px;
+}
+
+.registro-categoria-card .registro-categoria-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px;
+    width: 100%;
+}
+
+.registro-categoria-card .registro-categoria-campos {
+    display: grid !important;
+    grid-template-columns: minmax(250px, 1fr) minmax(300px, 1.5fr) !important;
+    gap: 24px;
+    width: 100%;
+    align-items: start;
+}
+
+.registro-categoria-card .registro-categoria-campo {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 9px;
+    min-width: 0;
+    width: 100%;
+    color: #10234D;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.registro-categoria-card .registro-categoria-campo label {
+    display: block;
+    width: 100%;
+    margin: 0;
+    line-height: 1.5;
+    color: #10234D;
+}
+
+.registro-categoria-card .registro-categoria-campo label i {
+    margin-right: 6px;
+    color: #2864F0;
+}
+
+.registro-categoria-card .registro-categoria-campo input,
+.registro-categoria-card .registro-categoria-campo textarea {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #D2DCEC;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: #10234D;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    box-sizing: border-box;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.registro-categoria-card .registro-categoria-campo textarea {
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.registro-categoria-card .registro-categoria-campo input:focus,
+.registro-categoria-card .registro-categoria-campo textarea:focus {
+    outline: none;
+    border-color: #2864F0;
+    box-shadow: 0 0 0 3px rgba(40, 100, 240, .12);
+}
+
+.registro-categoria-card .registro-categoria-ayuda {
+    display: block;
+    color: #75829A;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* BOTONES */
+
+.registro-categoria-card .registro-categoria-botones {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #DFE6F0;
+}
+
+.registro-categoria-card .registro-categoria-botones button,
+.registro-categoria-card .registro-categoria-botones a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    margin: 0;
+    padding: 11px 19px;
+    border: none;
+    border-radius: 9px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background .2s, transform .2s;
+}
+
+.btn-registrar-categoria {
+    background: #18BD70 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-registrar-categoria:hover {
+    background: #11995A !important;
+    transform: translateY(-1px);
+}
+
+.btn-limpiar-categoria {
+    background: #2864F0 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-limpiar-categoria:hover {
+    background: #174CC5 !important;
+}
+
+.btn-volver-categorias {
+    background: #EDF1F7 !important;
+    color: #34435E !important;
+}
+
+.btn-volver-categorias:hover {
+    background: #DDE5F0 !important;
+}
+
+/* AVISO */
+
+.registro-categoria-aviso {
+    display: none;
+    padding: 13px 15px;
+    border-radius: 9px;
+    background: #FFF5E5;
+    color: #946200;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.registro-categoria-aviso.visible {
+    display: block;
+}
+
+/* INFORMACION COMPLEMENTARIA */
+
+.registro-categoria-pasos {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+.registro-categoria-paso {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 19px;
+    border: 1px solid #DFE6F0;
+    border-radius: 12px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.registro-categoria-paso > i {
+    color: #2864F0;
+    font-size: 20px;
+}
+
+.registro-categoria-paso strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #10234D;
+    font-size: 12px;
+}
+
+.registro-categoria-paso p {
+    margin: 0;
+    color: #75829A;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.nota-demo {
+    color: #75829A;
+    font-size: 12px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .registro-categoria-pasos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .registro-categoria-card .registro-categoria-campos {
+        grid-template-columns: 1fr !important;
+    }
+
+    .registro-categoria-card .registro-categoria-botones {
+        flex-direction: column !important;
+        align-items: stretch;
+    }
+
+    .registro-categoria-card .registro-categoria-botones button,
+    .registro-categoria-card .registro-categoria-botones a {
+        width: 100%;
+    }
+}
+

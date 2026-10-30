@@ -36,7 +36,8 @@
             </li>
             <nav:menuPersonal opcion="#{cc.attrs.opcion}"/>
             <li class="#{cc.attrs.opcion eq 'ventas' ? 'active' : ''}"><h:link outcome="/Ventas.xhtml"><i class="fa-solid fa-chart-line"></i><span>Ventas</span></h:link></li>
-            <li class="#{cc.attrs.opcion eq 'puntoVenta' ? 'active' : ''}"><h:link outcome="/PuntoVenta.xhtml"><i class="fa-solid fa-cash-register"></i><span>Punto de Venta</span></h:link></li>
+            <li class="#{cc.attrs.opcion eq 'puntoVenta' ? 'active' : ''}"><h:link outcome="/PuntoVenta.xhtml"
+        style="pointer-events: none; opacity: 0.5; cursor: not-allowed;"><i class="fa-solid fa-cash-register"></i><span>Punto de Venta</span></h:link></li>
             <nav:menuCatalogo opcion="#{cc.attrs.opcion}"/>
             <li class="#{cc.attrs.opcion eq 'gastos' ? 'active' : ''}"><h:link outcome="/gastos.xhtml"><i class="fa-solid fa-money-bill"></i><span>Gastos</span></h:link></li>
             <li class="#{cc.attrs.opcion eq 'almacen' ? 'active' : ''}"><h:link outcome="/Almacen.xhtml"><i class="fa-solid fa-warehouse"></i><span>Almacén</span></h:link></li>
